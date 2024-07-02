@@ -3,7 +3,7 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:4000/api/users/1
+GET http://localhost:4000/api/users/14
 Content-Type: application/json
 
 ###
@@ -14,9 +14,28 @@ Content-Type: application/json
     "cedula": "1003402797",
     "nombre": "gustavo",
     "apellido": "garnau",
-    "correo":"garnau@correo.com",
-    "telefono":"3000000000",
+    "correo":"gustavo@correo.com",
+    "telefono":"304000002",
     "ciudad":"monteria",
     "direccion":"calle 123",
     "password":"123456"
 }
+###
+PUT http://localhost:4000/api/users/2
+Content-Type: application/json
+
+{
+    "cedula": "1003402798",
+    "nombre": "david",
+    "apellido": "delgado",
+    "correo":"daviddelgado@correo.com",
+    "telefono":"300000004",
+    "ciudad":"monteria",
+    "direccion":"calle 123",
+    "password":"123456"
+}
+
+###
+DELETE http://localhost:4000/api/users/13
+Content-Type: application/json
+
