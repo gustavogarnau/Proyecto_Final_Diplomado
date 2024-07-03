@@ -1,16 +1,22 @@
 const Pool = require("../../config/pg");
 const { crearToken } = require("../utils/jwtUtil");
 const nodemailer = require("nodemailer");
+const bcrypt = require("bcrypt");
 
 const registrar = async (usuario={}) => {
     const { cedula, nombre, apellido, correo, telefono, ciudad, direccion, password } = usuario;
-    const query = "INSERT INTO usuarios (cedula, nombre, apellido, correo, telefono, ciudad, direccion, password, activo) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, true)";
-    const parametros = [cedula, nombre, apellido, correo, telefono, ciudad, direccion, password];
+
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    const query = "INSERT INTO usuarios (cedula, nombre, apellido, correo, telefono, ciudad, direccion, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
+    const parametros = [cedula, nombre, apellido, correo, telefono, ciudad, direccion, hashedPassword];
     await Pool.query(query, parametros);
 
   const jwtData = {
-    email,
+    correo
   };
+
   const token = crearToken(jwtData, process.env.SECRET_KEY, { expiresIn: "1h" });
 
   // Configurar el transporte de Nodemailer
@@ -25,12 +31,12 @@ const registrar = async (usuario={}) => {
   });
 
   // Enlace de activación
-  const activationLink = `http://tu-dominio.com/${process.env.FRONTEND_URL}/activate/${correo}/${token}`;
+  const activationLink = `${process.env.FRONTEND_URL}/activate/${token}`;
 
   // Configurar el correo
   const mailOptions = {
     from: "gotasdeoro@gmail.com",
-    to: email,
+    to: correo,
     subject: "Registro Exitoso",
     text: `Gracias por registrarte. Activa tu cuenta haciendo clic en el siguiente enlace: ${activationLink}`,
   };

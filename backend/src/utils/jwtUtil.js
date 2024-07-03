@@ -37,7 +37,7 @@ const jwtVerificadorTiempoToken = (req, res, next) => {
 const verificarToken = (token) => {
   try {
     if (listaNegra.includes(token)) return false;
-    const verificado = jwt.verify(token, "SECRETO"); 
+    const verificado = jwt.verify(token, process.env.SECRET_KEY); 
     return verificado;
   } catch (error) {
     return false;
