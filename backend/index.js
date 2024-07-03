@@ -7,7 +7,10 @@ const cors = require('cors');
 require("dotenv").config();
 
 const users =  require("./src/routers/usersRouter");
-const {jwtVerificadorTiempoToken} = require("./src/utils/jwtUtil")
+const register = require("./src/routers/registerRouter");
+const login = require("./src/routers/loginRouter");
+const activate = require("./src/routers/activationRouter");
+const {jwtVerificadorTiempoToken} = require("./src/utils/jwtUtil");
 
 const PORT = process.env.PORT || 4000;
 
@@ -16,6 +19,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/users", users);
+app.use("/api/register", register);
+app.use("/api/login", login);
+app.use("/api/activate", activate)
 app.use(jwtVerificadorTiempoToken);
 
 app.get("/",  (req, res) => {
