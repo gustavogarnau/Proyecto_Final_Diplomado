@@ -25,7 +25,7 @@ const registrar = async (usuario={}) => {
   });
 
   // Enlace de activación
-  const activationLink = `http://tu-dominio.com/activate/${token}`;
+  const activationLink = `http://tu-dominio.com/${process.env.FRONTEND_URL}/activate/${correo}/${token}`;
 
   // Configurar el correo
   const mailOptions = {
