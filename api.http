@@ -11,7 +11,7 @@ POST http://localhost:4000/api/users
 Content-Type: application/json
 
 {
-    "cedula": "1003402797",
+    "cedula": "10034027977",
     "nombre": "gustavo",
     "apellido": "garnau",
     "correo":"gustavo@correo.com",

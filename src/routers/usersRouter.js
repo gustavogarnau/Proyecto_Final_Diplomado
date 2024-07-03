@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const { jsonResponse } = require("../../lib/jsonResponse");
+const {validatorBodyCreateUser, validatorParamasDeleteUser, validatorParamasUpdateUser,validatorParamsUserId} = require("../../schemas/usersSchema");
+const validationParams = require("../../middlewares/validationsMiddleware");
 
 const {
   getUsers,
@@ -22,7 +24,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", validatorParamsUserId, validationParams, (req, res) => {
   const id = req.params.id;
   getUserId(id)
     .then((result) => {
@@ -45,7 +47,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", validatorBodyCreateUser, validationParams, (req, res) => {
   postCreateUser(req.body)
     .then((result) => {
       res.json(jsonResponse(200, { message: "usuario creado exitosamente" }));
@@ -56,7 +58,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", validatorParamasUpdateUser, validationParams, (req, res) => {
   const id = req.params.id;
   putUpdateUser(id, req.body)
     .then((result) => {
@@ -73,7 +75,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", validatorParamasDeleteUser, validationParams, (req, res) => {
   const id = req.params.id;
   deleteUser(id)
     .then((result) => {

@@ -59,8 +59,9 @@ const validatorParamasDeleteUser = [
     .withMessage("el id debe ser numerico"),
 ];
 
-module.export = {
+module.exports = {
   validatorBodyCreateUser,
     validatorParamsUserId,
-    validatorParamasDeleteUser
+    validatorParamasDeleteUser,
+    validatorParamasUpdateUser
 };
