@@ -1,6 +1,5 @@
 
 import { Link} from "react-router-dom";
-import Autenticacion from "./Autenticacion";
 
 export const LoginRegister = () => {
     // const {id} = useParams();
@@ -16,40 +15,114 @@ export const LoginRegister = () => {
                         Iniciar sesión
                     </Link>
                 </p>
-
-                {/* <p>{id}</p> */}
-
                 <hr className="flex-grow border-zinc-300 dark:border-zinc-700" />
-                <div className="mt-6">
-                    <Autenticacion />
-                </div>
-                <div className="flex items-center my-6">
-                    <hr className="flex-grow  border-zinc-300 dark:border-zinc-700" />
-                    <span className="mx-2 text-zinc-400 dark:text-zinc-500">o</span>
-                    <hr className="flex-grow  border-zinc-300 dark:border-zinc-700" />
-                </div>
-                <form method="POST" className="form">
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block text-zinc-700 dark:text-zinc-300">
-                            Email
-                        </label>
-                        <input
-                            className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
-                            type="email"
-                            name="email"
-                            id="email"
-                        />
+                <form method="POST" className="form my-6">
+                    <div className="mb-4 flex gap-4">
+                        <div>
+                            <label htmlFor="cedula" className="block text-zinc-700 dark:text-zinc-300">
+                                Cedula
+                            </label>
+                            <input
+                                className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                type="number"
+                                name="cedula"
+                                id="cedula"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="nombre" className="block text-zinc-700 dark:text-zinc-300">
+                                Nombre
+                            </label>
+                            <input
+                                className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                type="text"
+                                name="nombre"
+                                id="nombre"
+                                required
+                            />
+                        </div>
                     </div>
-                    <div className="mb-4">
-                        <label htmlFor="password" className="block text-zinc-700 dark:text-zinc-300">
-                            Contraseña
-                        </label>
-                        <input
-                            className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
-                            type="password"
-                            name="password"
-                            id="password"
-                        />
+
+                    <div className="mb-4 flex gap-4">
+                        <div>
+                            <label htmlFor="apellido" className="block text-zinc-700 dark:text-zinc-300">
+                                Apellido
+                            </label>
+                            <input
+                                className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                type="text"
+                                name="apellido"
+                                id="apellido"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="email" className="block text-zinc-700 dark:text-zinc-300">
+                                Email
+                            </label>
+                            <input
+                                className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                type="email"
+                                name="email"
+                                id="email"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div className="mb-4 flex gap-4">
+                        <div>
+                            <label htmlFor="telefono" className="block text-zinc-700 dark:text-zinc-300">
+                                Telefono
+                            </label>
+                            <input
+                                className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                type="number"
+                                name="telefono"
+                                id="telefono"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="ciudad" className="block text-zinc-700 dark:text-zinc-300">
+                                Ciudad
+                            </label>
+                            <input
+                                className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                type="text"
+                                name="ciudad"
+                                id="ciudad"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div className="mb-4 flex gap-4">
+                        <div>
+                            <label htmlFor="direccion" className="block text-zinc-700 dark:text-zinc-300">
+                                Direccion
+                            </label>
+                            <input
+                                className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                type="text"
+                                name="direccion"
+                                id="direccion"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="password" className="block text-zinc-700 dark:text-zinc-300">
+                                Contraseña
+                            </label>
+                            <input
+                                className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                type="password"
+                                name="password"
+                                id="password"
+                                required
+                            />
+                        </div>
                     </div>
                     <button
                         type="submit"
