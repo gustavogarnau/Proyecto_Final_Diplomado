@@ -8,11 +8,11 @@ const { validatorBodyCreateUser } = require("../../schemas/usersSchema");
 const validationParams = require("../../middlewares/validationsMiddleware");
 
 // Ruta de registro
-router.post("/register",validatorBodyCreateUser, validationParams,  (req, res) => {
+router.post("/",validatorBodyCreateUser, validationParams,  (req, res) => {
     const usuario = req.body;
     registrar(usuario)
       .then((token) => {
-        res.json(jsonResponse(200, { message: "Usuario registrado exitosamente. Revisa tu correo para activar tu cuenta."}));
+        res.json(jsonResponse(200, { message: "Usuario registrado exitosamente. Revisa tu correo para activar tu cuenta.", token }));
       })
       .catch((error) => {
         console.error("error al registrar el usuario", error);

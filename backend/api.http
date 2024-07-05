@@ -11,21 +11,21 @@ POST http://localhost:4000/api/users
 Content-Type: application/json
 
 {
-    "cedula": "10034027977",
+    "cedula": "1003402797",
     "nombre": "gustavo",
     "apellido": "garnau",
-    "correo":"gustavo@correo.com",
-    "telefono":"304000002",
-    "ciudad":"monteria",
-    "direccion":"calle 123",
-    "password":"123456"
+    "correo": "ggarnauarrieta@gmail.com",
+    "telefono": "304000002",
+    "ciudad": "monteria",
+    "direccion": "calle 123",
+    "password": "123456"
 }
 ###
 PUT http://localhost:4000/api/users/2
 Content-Type: application/json
 
 {
-    "cedula": "1003402798",
+    "cedula": "1003402792",
     "nombre": "david",
     "apellido": "delgado",
     "correo":"daviddelgado@correo.com",
@@ -36,7 +36,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:4000/api/users/20
+DELETE http://localhost:4000/api/users/21
 Content-Type: application/json
 
 ###
@@ -44,10 +44,10 @@ POST http://localhost:4000/api/register
 Content-Type: application/json
 
 {
-    "cedula": "1003402797",
+    "cedula": "1003402795",
     "nombre": "gustavo",
     "apellido": "garnau",
-    "correo":"ggarnauarrieta@gmail.com",
+    "correo":"garnauth.karol@hotmail.com",
     "telefono":"304000002",
     "ciudad":"monteria",
     "direccion":"calle 123",
@@ -58,6 +58,17 @@ POST http://localhost:4000/api/login
 Content-Type: application/json
 
 {
+    "correo":"garnauth.karol@hotmail.com",
+    "password": "123456"
+}
+###
+POST http://localhost:4000/api/login
+Content-Type: application/json
+
+{
     "correo":"ggarnauarrieta@gmail.com",
     "password": "123456"
 }
+
+GET http://localhost:4000/api/proveedores/
+Content-Type: application/json

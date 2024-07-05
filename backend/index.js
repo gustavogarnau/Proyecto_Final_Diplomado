@@ -10,6 +10,7 @@ const users =  require("./src/routers/usersRouter");
 const register = require("./src/routers/registerRouter");
 const login = require("./src/routers/loginRouter");
 const activate = require("./src/routers/activationRouter");
+const proveedores = require("./src/routers/proveedoresRouter")
 const {jwtVerificadorTiempoToken} = require("./src/utils/jwtUtil");
 
 const PORT = process.env.PORT || 4000;
@@ -22,6 +23,7 @@ app.use("/api/users", users);
 app.use("/api/register", register);
 app.use("/api/login", login);
 app.use("/api/activate", activate)
+app.use("/api/proveedores", proveedores)
 app.use(jwtVerificadorTiempoToken);
 
 app.get("/",  (req, res) => {

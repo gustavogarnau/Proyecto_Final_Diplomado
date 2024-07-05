@@ -9,6 +9,7 @@ router.post("/", async (req, res) => {
     const token = await login(correo, password);
     res.json(jsonResponse(200, { message: "Login exitoso", token }));
   } catch (error) {
+    console.log("error:", error)
     res.json(jsonResponse(500, { error: error.mensaje || "Error al iniciar sesión" }));
   }
 });
