@@ -13,7 +13,6 @@ const login = async (email = "", contrasenaParam = "") => {
     if (resultado.rows.length > 0) {
       const usuario = resultado.rows[0];
       const comparacion = await bcrypt.compare(contrasenaParam, usuario.password);
-
       if (!comparacion) {
         console.log(!comparacion)
         return Promise.reject({
@@ -28,7 +27,7 @@ const login = async (email = "", contrasenaParam = "") => {
       const datosEncriptados = encriptacion(JSON.stringify(jwtData));
       const token = crearToken(
         { datos: datosEncriptados, llave: LLAVE_SEGUNDA },
-        process.env.JWT_SECRETO,
+        process.env.SECRET_KEY,
         { expiresIn: "15m" }
       );
       return token;

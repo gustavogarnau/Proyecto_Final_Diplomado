@@ -1,4 +1,5 @@
 const Pool = require("../../config/pg");
+const bcrypt = require("bcrypt");
 
 const getUsers = async () => {
     const query = "SELECT * FROM usuarios";
@@ -15,8 +16,10 @@ const getUserId = async (id = "") => {
 
 const postCreateUser = async (usuario = {}) => {
     const { cedula, nombre, apellido, correo, telefono, ciudad, direccion, password } = usuario;
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
     const query = "INSERT INTO usuarios (cedula, nombre, apellido, correo, telefono, ciudad, direccion, password, activo) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, true)";
-    const parametros = [cedula, nombre, apellido, correo, telefono, ciudad, direccion, password];
+    const parametros = [cedula, nombre, apellido, correo, telefono, ciudad, direccion, hashedPassword];
     const users = await Pool.query(query, parametros);
     return users;
 }
