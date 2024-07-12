@@ -1,8 +1,31 @@
-
-import { Link} from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useRegister } from "../hook/useRegister";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export const LoginRegister = () => {
-    // const {id} = useParams();
+    const { register, handleSubmit } = useForm();
+    const { registerLogin } = useRegister();
+    const [error, setError] = useState(null);
+
+    const onSubmit = async (data) => {
+        setError(null); // Reset the error before attempting to log in
+        // console.log("Datos del formulario:", data);
+
+        try {
+            const result = await registerLogin(data);
+            console.log(result);
+            if (result && result.statusCode === 200) {
+                console.log("Registro exitoso:", result);
+                // Aquí puedes manejar lo que ocurre después del login exitoso, como redirigir al usuario
+            } else {
+                throw new Error("Error al registrarse");
+            }
+        } catch (error) {
+            console.error("Error al registrarse11:", error.message);
+            setError(error.message || "Error al registrarse");
+        }
+    };
 
     return (
         <div className="">
@@ -16,7 +39,8 @@ export const LoginRegister = () => {
                     </Link>
                 </p>
                 <hr className="flex-grow border-zinc-300 dark:border-zinc-700" />
-                <form method="POST" className="form my-6">
+                <form method="POST" className="form my-6" onSubmit={handleSubmit(onSubmit)}>
+                    {error && <div className="mb-4 text-xs text-red-500">{error}</div>}
                     <div className="mb-4 flex gap-4">
                         <div>
                             <label htmlFor="cedula" className="block text-zinc-700 dark:text-zinc-300">
@@ -25,7 +49,7 @@ export const LoginRegister = () => {
                             <input
                                 className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
                                 type="number"
-                                name="cedula"
+                                {...register("cedula")}
                                 id="cedula"
                                 required
                             />
@@ -37,7 +61,7 @@ export const LoginRegister = () => {
                             <input
                                 className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
                                 type="text"
-                                name="nombre"
+                                {...register("nombre")}
                                 id="nombre"
                                 required
                             />
@@ -52,20 +76,20 @@ export const LoginRegister = () => {
                             <input
                                 className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
                                 type="text"
-                                name="apellido"
+                                {...register("apellido")}
                                 id="apellido"
                                 required
                             />
                         </div>
                         <div>
-                            <label htmlFor="email" className="block text-zinc-700 dark:text-zinc-300">
+                            <label htmlFor="correo" className="block text-zinc-700 dark:text-zinc-300">
                                 Email
                             </label>
                             <input
                                 className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
-                                type="email"
-                                name="email"
-                                id="email"
+                                type="correo"
+                                {...register("correo")}
+                                id="correo"
                                 required
                             />
                         </div>
@@ -79,7 +103,7 @@ export const LoginRegister = () => {
                             <input
                                 className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
                                 type="number"
-                                name="telefono"
+                                {...register("telefono")}
                                 id="telefono"
                                 required
                             />
@@ -91,7 +115,7 @@ export const LoginRegister = () => {
                             <input
                                 className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
                                 type="text"
-                                name="ciudad"
+                                {...register("ciudad")}
                                 id="ciudad"
                                 required
                             />
@@ -106,7 +130,7 @@ export const LoginRegister = () => {
                             <input
                                 className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
                                 type="text"
-                                name="direccion"
+                                {...register("direccion")}
                                 id="direccion"
                                 required
                             />
@@ -118,7 +142,7 @@ export const LoginRegister = () => {
                             <input
                                 className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
                                 type="password"
-                                name="password"
+                                {...register("password")}
                                 id="password"
                                 required
                             />

@@ -12,11 +12,12 @@ export const Login = () => {
 
     const onSubmit = async (data) => {
         setError(null); // Reset the error before attempting to log in
-        console.log("Datos del formulario:", data);
+        // console.log("Datos del formulario:", data);
 
         try {
             const result = await login(data);
-            if (result && result.status === 200) {
+            console.log(result);
+            if (result && result.statusCode === 200) {
                 console.log("Login exitoso:", result);
                 // Aquí puedes manejar lo que ocurre después del login exitoso, como redirigir al usuario
             } else {
@@ -50,14 +51,14 @@ export const Login = () => {
                 <form method="POST" className="form" onSubmit={handleSubmit(onSubmit)}>
                     {error && <div className="mb-4 text-xs text-red-500">{error}</div>}
                     <div className="mb-4">
-                        <label htmlFor="email" className="block text-zinc-700 dark:text-zinc-300">
+                        <label htmlFor="correo" className="block text-zinc-700 dark:text-zinc-300">
                             Email
                         </label>
                         <input
                             className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
-                            type="email"
-                            {...register("email")}
-                            id="email"
+                            type="correo"
+                            {...register("correo")}
+                            id="correo"
                             required
                         />
                     </div>
