@@ -27,6 +27,7 @@ const jwtVerificadorTiempoToken = (req, res, next) => {
 
   if (verificarTiempoToken(TOKEN) === false) {
     res.status(401).json({ mensaje: "Token expirado" });
+    console.log("token expirado")
     return null;
   }
 

@@ -25,10 +25,10 @@ PUT http://localhost:4000/api/users/2
 Content-Type: application/json
 
 {
-    "cedula": "1003402792",
+    "cedula": "1002202792",
     "nombre": "david",
     "apellido": "delgado",
-    "correo":"daviddelgado@correo.com",
+    "correo":"daviddelgado@coso.com",
     "telefono":"300000004",
     "ciudad":"monteria",
     "direccion":"calle 123",
@@ -40,15 +40,15 @@ DELETE http://localhost:4000/api/users/21
 Content-Type: application/json
 
 ###
-POST http://localhost:4000/api/register
+POST http://localhost:3000/api/register
 Content-Type: application/json
 
 {
-    "cedula": "1003402795",
-    "nombre": "gustavo",
-    "apellido": "garnau",
-    "correo":"garnauth.karol@hotmail.com",
-    "telefono":"304000002",
+    "cedula": "1003114328",
+    "nombre": "David",
+    "apellido": "Delgado",
+    "correo":"dmdr1025@gmail.com",
+    "telefono":"3196846680",
     "ciudad":"monteria",
     "direccion":"calle 123",
     "password":"123456"
@@ -73,3 +73,9 @@ Content-Type: application/json
 ###
 GET http://localhost:4000/api/proveedores/
 Content-Type: application/json
+
+###
+GET http://localhost:3000/api/activate/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI4LCJjb3JyZW8iOiJkbWRyMTAyNUBnbWFpbC5jb20iLCJpYXQiOjE3MjA3OTc4MjgsImV4cCI6MTcyMDgwNTAyOH0.rdCSpKHaGE1flFWl2ZRupdy4Dq2SDLFVRpGnPpRIQT0
+Content-Type: application/json
+
+
