@@ -1,15 +1,13 @@
 const Pool = require("../../config/pg");
 const { verificarToken } = require("../utils/jwtUtil");
 
-const activarCuenta = async (correo, token) => {
+const activarCuenta = async ( token) => {
   try {
     const decoded = verificarToken(token, process.env.SECRET_KEY);
-    if (decoded.email !== correo) {
-      throw new Error("Correo no coincide con el token.");
-    }
+    const {userId, correo} = decoded;
 
-    const query = "UPDATE usuarios SET activo = TRUE WHERE correo = $1";
-    const parametros = [correo];
+    const query = "UPDATE usuarios SET activo = TRUE WHERE usuario_id = $1 and correo = $2";
+    const parametros = [userId, correo];
     const result = await Pool.query(query, parametros);
 
     if (result.rowCount === 0) {

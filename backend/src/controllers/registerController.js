@@ -3,21 +3,45 @@ const { crearToken } = require("../utils/jwtUtil");
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
 
-const registrar = async (usuario={}) => {
-    const { cedula, nombre, apellido, correo, telefono, ciudad, direccion, password } = usuario;
+const registrar = async (usuario = {}) => {
+  const {
+    cedula,
+    nombre,
+    apellido,
+    correo,
+    telefono,
+    ciudad,
+    direccion,
+    password,
+  } = usuario;
 
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+  const saltRounds = 10;
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    const query = "INSERT INTO usuarios (cedula, nombre, apellido, correo, telefono, ciudad, direccion, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
-    const parametros = [cedula, nombre, apellido, correo, telefono, ciudad, direccion, hashedPassword];
-    await Pool.query(query, parametros);
+  const query =
+    "INSERT INTO usuarios (cedula, nombre, apellido, correo, telefono, ciudad, direccion, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING usuario_id";
+  const parametros = [
+    cedula,
+    nombre,
+    apellido,
+    correo,
+    telefono,
+    ciudad,
+    direccion,
+    hashedPassword,
+  ];
+  const result = await Pool.query(query, parametros);
 
+  const userId = result.rows[0].usuario_id;
+  console.log(userId);
   const jwtData = {
-    correo
+    userId,
+    correo,
   };
 
-  const token = crearToken(jwtData, process.env.SECRET_KEY, { expiresIn: "1h" });
+  const token = crearToken(jwtData, process.env.SECRET_KEY, {
+    expiresIn: "2h",
+  });
 
   // Configurar el transporte de Nodemailer
   const transporter = nodemailer.createTransport({
