@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { MdDashboard } from "react-icons/md";
 import { FaShoppingBasket } from "react-icons/fa";
-import { GoSignIn } from "react-icons/go";
+import { GoSignOut } from "react-icons/go"; // Asegúrate de tener el ícono correcto para cerrar sesión
 import DarkMode from "../layouts/DarkMode";
-import Logo from"../assets/images/logo.png";
+import Logo from "../assets/images/logo.png";
+import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+
+const Sidebar = ({ onLogout }) => {
     const [menu, setMenu] = useState(false);
 
     const toggleMenu = () => {
@@ -35,12 +37,12 @@ const Sidebar = () => {
                                     <path d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                                 </svg>
                             </button>
-                            <a href="https://flowbite.com" className="flex ms-2 md:me-24">
+                            <div className="flex ms-2 md:me-24">
                                 <img src={Logo} className="h-8 me-3" alt="FlowBite Logo" />
                                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                                     Gotas de oro
                                 </span>
-                            </a>
+                            </div>
                         </div>
                         <div className="flex items-center">
                             <DarkMode />
@@ -56,27 +58,28 @@ const Sidebar = () => {
                 <div className="h-full px-3 pt-16 overflow-y-auto bg-white dark:bg-gray-800">
                     <ul className="space-y-2 font-medium">
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-300 ">
+                            <Link
+                                to="/home"
+                                className=" flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group">
                                 <MdDashboard className="w-5 h-5 text-gray-500 transition duration-75 " />
                                 <span className="ms-3">Inicio</span>
-                            </a>
+                            </Link>
                         </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <li className="li">
+                            <Link
+                                to="/productos"
+                                className="sidebar flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group">
                                 <FaShoppingBasket className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75" />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Productos</span>
-                            </a>
+                            </Link>
                         </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                <GoSignIn className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75" />
-                                
-                                <span className="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
-                            </a>
+                        <li className=" w-full  cursor-pointer rounded-lg">
+                            <button
+                                onClick={onLogout}
+                                className=" flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group">
+                                <GoSignOut className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75" />
+                                <span className="flex-1 ms-3 whitespace-nowrap">Cerrar sesión</span>
+                            </button>
                         </li>
                     </ul>
                 </div>

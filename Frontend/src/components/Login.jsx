@@ -6,7 +6,7 @@ import { useState } from "react";
 import DarkMode from "../layouts/DarkMode";
 import Loader from "../layouts/Loader/Loader";
 
-export const Login = () => {
+const Login = ({ onLogin }) => {
     const { register, handleSubmit } = useForm();
     const { login } = useLogin();
     const [error, setError] = useState(null);
@@ -15,29 +15,27 @@ export const Login = () => {
 
     const onSubmit = async (data) => {
         setError(null);
-        setShowLoader(true); // Mostrar loader al iniciar la solicitud
+        setShowLoader(true);
 
         try {
             const result = await login(data);
-            console.log(result);
             if (result && result.statusCode === 200) {
-                console.log("Login exitoso:", result);
-                setShowLoader(false); // Ocultar loader después de una respuesta exitosa
-                navigate("/home"); // Redirigir al usuario a la página de inicio
+                onLogin(); // Llama a la función onLogin pasada por prop
+                setShowLoader(false);
+                navigate("/home");
             } else {
-                throw new Error("Error en el inicio de sesión. Por favor, verifica tus credenciales.");
+                throw new Error("Error en el inicio de sesión.");
             }
         } catch (error) {
-            console.error("Error en el inicio de sesión:", error.message);
-            setError(error.message || "Error en el inicio de sesión. Por favor, verifica tus credenciales.");
-            setShowLoader(false); // Ocultar loader en caso de error
+            setError(error.message || "Error en el inicio de sesión.");
+            setShowLoader(false);
         }
     };
 
     return (
         <>
             <div className="z-40 w-full flex justify-center">
-                {showLoader ? ( // Mostrar loader si showLoader es true
+                {showLoader ? (
                     <Loader />
                 ) : (
                     <div className=" flex flex-col justify-center bg-white dark:bg-zinc-800 p-6 rounded-lg shadow-2xl">

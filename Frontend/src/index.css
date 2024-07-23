@@ -176,6 +176,13 @@
     color: #ffffff;
 }
 
+.dark-mode table thead,
+.dark-mode table tr,
+.dark-mode table tr th{
+    background-color: var(--primary-dark);
+    color: var(--primary-ligth);
+}
+
 
 .aside{
     padding-top: 60px;
