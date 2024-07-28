@@ -4,7 +4,8 @@ import { FaShoppingBasket } from "react-icons/fa";
 import { GoSignOut } from "react-icons/go"; // Asegúrate de tener el ícono correcto para cerrar sesión
 import DarkMode from "../layouts/DarkMode";
 import Logo from "../assets/images/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 
 const Sidebar = ({ onLogout }) => {
@@ -13,6 +14,19 @@ const Sidebar = ({ onLogout }) => {
     const toggleMenu = () => {
         setMenu(!menu);
     };
+
+      const [selectedOption, setSelectedOption] = useState("");
+      const navigate = useNavigate();
+
+      const handleSelectChange = (event) => {
+          const value = event.target.value;
+          setSelectedOption(value);
+
+          // Navigate to the selected route
+          if (value) {
+              navigate(value);
+          }
+      };
 
     return (
         <>
@@ -65,14 +79,21 @@ const Sidebar = ({ onLogout }) => {
                                 <span className="ms-3">Inicio</span>
                             </Link>
                         </li>
-                        <li className="li">
-                            <Link
-                                to="/productos"
-                                className="sidebar flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group">
-                                <FaShoppingBasket className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75" />
-                                <span className="flex-1 ms-3 whitespace-nowrap">Productos</span>
-                            </Link>
+                        <li className="li flex items-center pl-2">
+                            <FaShoppingBasket className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75" />
+                            <select
+                                value={selectedOption}
+                                onChange={handleSelectChange}
+                                className="p-2 text-gray-900 rounded-lg dark:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
+                                <option value="" disabled>
+                                    Productos
+                                </option>
+                                <option value="/productos">Productos</option>
+                                <option value="/movimientos">Movimientos</option>
+                                <option value="/categorias">Categorías</option>
+                            </select>
                         </li>
+
                         <li className=" w-full  cursor-pointer rounded-lg">
                             <button
                                 onClick={onLogout}

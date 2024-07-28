@@ -176,11 +176,49 @@
     color: #ffffff;
 }
 
-.dark-mode table thead,
-.dark-mode table tr,
-.dark-mode table tr th{
+.dark-mode table thead{
+    background-color: #23262c;
+    color: var(--primary-ligth);
+}
+
+.dark-mode table tbody tr{
     background-color: var(--primary-dark);
     color: var(--primary-ligth);
+}
+
+.dark-mode .button,
+.dark-mode .modal{
+    background-color: #23262c;
+}
+
+.dark-mode .button:hover{
+    background-color: #16181b;
+}
+
+.dark-mode .btn-modal{
+    color: var(--primary-ligth);
+}
+
+.dark-mode select{
+    background-color: var(--primary-dark);
+    color: var(--primary-ligth);
+}
+
+.dark-mode BarChart{
+    color: var(--primary-ligth);
+}
+
+
+
+.content_principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+}
+
+.content_card{
+    padding-top: 38%;
 }
 
 
@@ -188,5 +226,9 @@
     padding-top: 60px;
 }
 
-
+@media (max-width: 728px) {
+  .content_card{
+    padding-top: 147% !important;
+}
+}
 
