@@ -44,21 +44,21 @@ POST http://localhost:3000/api/register
 Content-Type: application/json
 
 {
-    "cedula": "1003114328",
+    "cedula": "20034",
     "nombre": "David",
     "apellido": "Delgado",
-    "correo":"dmdr1025@gmail.com",
+    "correo":"dmdr10jd225@gmail.com",
     "telefono":"3196846680",
     "ciudad":"monteria",
     "direccion":"calle 123",
     "password":"123456"
 }
 ###
-POST http://localhost:4000/api/login
+POST http://localhost:3000/api/login
 Content-Type: application/json
 
 {
-    "correo":"garnauth.karol@hotmail.com",
+    "correo":"dmdr10jd225@gmail.com",
     "password": "123456"
 }
 ###
@@ -76,6 +76,10 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/activate/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI4LCJjb3JyZW8iOiJkbWRyMTAyNUBnbWFpbC5jb20iLCJpYXQiOjE3MjA3OTc4MjgsImV4cCI6MTcyMDgwNTAyOH0.rdCSpKHaGE1flFWl2ZRupdy4Dq2SDLFVRpGnPpRIQT0
+Content-Type: application/json
+
+###
+GET http://localhost:3000/api/categoria/
 Content-Type: application/json
 
 
