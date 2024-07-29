@@ -78,4 +78,8 @@ Content-Type: application/json
 GET http://localhost:3000/api/activate/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI4LCJjb3JyZW8iOiJkbWRyMTAyNUBnbWFpbC5jb20iLCJpYXQiOjE3MjA3OTc4MjgsImV4cCI6MTcyMDgwNTAyOH0.rdCSpKHaGE1flFWl2ZRupdy4Dq2SDLFVRpGnPpRIQT0
 Content-Type: application/json
 
+###
+GET http://localhost:3000/api/categoria/
+Content-Type: application/json
+
 

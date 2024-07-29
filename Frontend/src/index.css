@@ -1,3 +1,234 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --primary-color: #52489c;
+    --primary-ligth: #e7ebec;
+    --primary-dark: #242931;
+}
+
+
+
+
+
+.h1,
+.p {
+    animation: translate-y-100 300ms cubic-bezier(0.165, 0.84, 0.44, 1.2) forwards;
+    opacity: 0;
+}
+
+.h1 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 24px;
+    animation-delay: 1100ms;
+}
+
+.p {
+    margin: 0;
+    font-size: 13px;
+    color: #60655f;
+    animation-delay: 1150ms;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 448px;
+    padding: 32px;
+    background-color: #ffffff;
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+.card:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border-radius: 5px;
+    clip-path: inset(0px -15px 0px -15px);
+}
+.card:nth-of-type(3):before {
+    clip-path: inset(0px -15px -15px -15px);
+}
+
+.card:first-of-type {
+    animation: translate-y-100 500ms 1000ms cubic-bezier(0.19, 1, 0.22, 1.2) forwards;
+    opacity: 0;
+    z-index: 0;
+}
+
+.card .icon {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #ffffff;
+    border-radius: 9999px;
+    background: linear-gradient(to top, #f2f2f280, #e0e0e080);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.06) inset;
+    display: grid;
+    place-content: center;
+    margin-bottom: 1rem;
+}
+
+/* .card .icon:before {
+    content: "\2713";
+    
+
+    border-radius: 9999px;
+    background-color: #ffffff;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03);
+    font-family: "arial";
+
+    color: #46a758;
+} */
+
+.card.success .icon:before {
+    content: "\2713";
+    display: grid;
+    place-items: center;
+    color: #46a758;
+    width: 56px;
+    height: 56px;
+    font-size: 32px;
+}
+
+.card.error .icon:before {
+    content: "\2717"; /* Código de símbolo para una 'X' */
+    display: grid;
+    place-items: center;
+    color: #e74c3c;
+    width: 56px;
+    height: 56px;
+    font-size: 32px;
+}
+
+.card.error .icon {
+    background: linear-gradient(to top, #e0e0e080, #f2f2f280);
+}
+
+.card:not(:first-of-type) {
+    transform-origin: top;
+    animation: unfold 500ms 1700ms cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    -webkit-transform: perspective(500px) rotateX(-0.25turn);
+    z-index: 1;
+    opacity: 0.9;
+}
+.card:nth-of-type(3) {
+    animation-delay: 1950ms;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 1.4);
+    z-index: 2;
+}
+
+.card:not(:first-of-type):after {
+    position: absolute;
+    top: -0.5px;
+    left: 1%;
+    content: "";
+    width: 98%;
+    height: 1px;
+    border-top: 1px #d7dad7 dashed;
+}
+
+/* Animations */
+@keyframes translate-y-100 {
+    0% {
+        transform: scale(0.9) translateY(0.5rem);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes unfold {
+    to {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+/* DARKMODE */
+
+.dark-mode {
+    background-color: var(--primary-dark);
+}
+
+.dark-mode div {
+    background-color: var(--primary-dark);
+}
+
+.dark-mode h2,
+.dark-mode p,
+.dark-mode span,
+.dark-mode label,
+.dark-mode button {
+    color: #ffffff;
+}
+
+.dark-mode input{
+    background-color: var(--primary-dark);
+    color: #ffffff;
+}
+
+.dark-mode table thead{
+    background-color: #23262c;
+    color: var(--primary-ligth);
+}
+
+.dark-mode table tbody tr{
+    background-color: var(--primary-dark);
+    color: var(--primary-ligth);
+}
+
+.dark-mode .button,
+.dark-mode .modal{
+    background-color: #23262c;
+}
+
+.dark-mode .button:hover{
+    background-color: #16181b;
+}
+
+.dark-mode .btn-modal{
+    color: var(--primary-ligth);
+}
+
+.dark-mode select{
+    background-color: var(--primary-dark);
+    color: var(--primary-ligth);
+}
+
+.dark-mode BarChart{
+    color: var(--primary-ligth);
+}
+
+
+
+.content_principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+}
+
+.content_card{
+    padding-top: 38%;
+}
+
+
+.aside{
+    padding-top: 60px;
+}
+
+@media (max-width: 728px) {
+  .content_card{
+    padding-top: 147% !important;
+}
+}
+
