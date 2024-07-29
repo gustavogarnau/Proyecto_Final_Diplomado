@@ -12,6 +12,7 @@
 
 
 
+
 .h1,
 .p {
     animation: translate-y-100 300ms cubic-bezier(0.165, 0.84, 0.44, 1.2) forwards;
@@ -208,6 +209,22 @@
     color: var(--primary-ligth);
 }
 
+.dark-mode .sidebarOpen{
+    background-color: #212427;
+}
+
+.dark-mode .sidebar{
+    background-color: #2c3035;
+}
+
+.dark-mode .link{
+    color: var(--primary-ligth);
+}
+
+.dark-mode .link:hover{
+    background-color: #23262c;
+}
+
 
 
 .content_principal{
@@ -219,11 +236,6 @@
 
 .content_card{
     padding-top: 38%;
-}
-
-
-.aside{
-    padding-top: 60px;
 }
 
 @media (max-width: 728px) {

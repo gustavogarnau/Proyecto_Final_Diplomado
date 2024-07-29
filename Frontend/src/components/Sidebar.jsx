@@ -1,112 +1,87 @@
 import { useState } from "react";
-import { MdDashboard } from "react-icons/md";
 import { FaShoppingBasket } from "react-icons/fa";
-import { GoSignOut } from "react-icons/go"; // Asegúrate de tener el ícono correcto para cerrar sesión
+import { AiOutlineLeft, AiOutlineHome, AiOutlineSetting } from "react-icons/ai";
+import { MdOutlineAnalytics, MdLogout } from "react-icons/md";
+import logo from "../assets/images/logo.png";
 import DarkMode from "../layouts/DarkMode";
-import Logo from "../assets/images/logo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
+// Componente Sidebar
+function Sidebar({ onLogout }) {
+    // Estado para manejar la visibilidad del sidebar
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
-
-const Sidebar = ({ onLogout }) => {
-    const [menu, setMenu] = useState(false);
-
-    const toggleMenu = () => {
-        setMenu(!menu);
+    // Función para abrir/cerrar el sidebar
+    const ModSidebaropen = () => {
+        setSidebarOpen(!sidebarOpen);
     };
-
-      const [selectedOption, setSelectedOption] = useState("");
-      const navigate = useNavigate();
-
-      const handleSelectChange = (event) => {
-          const value = event.target.value;
-          setSelectedOption(value);
-
-          // Navigate to the selected route
-          if (value) {
-              navigate(value);
-          }
-      };
 
     return (
         <>
-            <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                <div className="px-3 py-3 lg:px-5 lg:pl-3">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center justify-start rtl:justify-end">
-                            <button
-                                data-drawer-target="logo-sidebar"
-                                data-drawer-toggle="logo-sidebar"
-                                aria-controls="logo-sidebar"
-                                type="button"
-                                onClick={toggleMenu}
-                                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-                                <span className="sr-only">Open sidebar</span>
-                                <svg
-                                    className="w-6 h-6"
-                                    aria-hidden="true"
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-                                </svg>
-                            </button>
-                            <div className="flex ms-2 md:me-24">
-                                <img src={Logo} className="h-8 me-3" alt="FlowBite Logo" />
-                                <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                                    Gotas de oro
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex items-center">
-                            <DarkMode />
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            <button
+                className={`sidebarOpen fixed top-28 z-50 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center ${
+                    sidebarOpen ? "left-64" : "left-20"
+                }`}
+                onClick={ModSidebaropen}>
+                <AiOutlineLeft className={`${sidebarOpen ? "" : "rotate-180"}`} />
+            </button>
 
-            <aside
-                className={`aside fixed top-0 left-0 z-40 w-64 h-screen  transition-transform ${
-                    menu ? "translate-x-0" : "-translate-x-full"
-                } bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}>
-                <div className="h-full px-3 pt-16 overflow-y-auto bg-white dark:bg-gray-800">
-                    <ul className="space-y-2 font-medium">
-                        <li>
-                            <Link
-                                to="/home"
-                                className=" flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group">
-                                <MdDashboard className="w-5 h-5 text-gray-500 transition duration-75 " />
-                                <span className="ms-3">Inicio</span>
-                            </Link>
-                        </li>
-                        <li className="li flex items-center pl-2">
-                            <FaShoppingBasket className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75" />
-                            <select
-                                value={selectedOption}
-                                onChange={handleSelectChange}
-                                className="p-2 text-gray-900 rounded-lg dark:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <option value="" disabled>
-                                    Productos
-                                </option>
-                                <option value="/productos">Productos</option>
-                                <option value="/movimientos">Movimientos</option>
-                                <option value="/categorias">Categorías</option>
-                            </select>
-                        </li>
-
-                        <li className=" w-full  cursor-pointer rounded-lg">
-                            <button
-                                onClick={onLogout}
-                                className=" flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group">
-                                <GoSignOut className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75" />
-                                <span className="flex-1 ms-3 whitespace-nowrap">Cerrar sesión</span>
-                            </button>
-                        </li>
-                    </ul>
+            <div
+                className={`sidebar fixed z-40  left-3 rounded-xl shadow-2xl bg-white text-black p-5  ${
+                    sidebarOpen ? "w-64" : "w-20"
+                }`}>
+                {/* Logo */}
+                <div className="sidebar flex items-center justify-center mb-6">
+                    <img
+                        src={logo}
+                        alt="Logo"
+                        className={`transition-transform duration-300 ${sidebarOpen ? "w-16" : "w-10"}`}
+                    />
+                    {sidebarOpen && <h2 className="ml-2">Gotas de oro</h2>}
                 </div>
-            </aside>
+
+                {/* Links principales */}
+                <div className="sidebar flex flex-col">
+                    <Link
+                        to="/home"
+                        className="link flex items-center p-2 my-2 trbuttonnsition-colors duration-300 hover:bg-gray-200 rounded-lg">
+                        <AiOutlineHome className="text-2xl" />
+                        {sidebarOpen && <span className="ml-4">Home</span>}
+                    </Link>
+                    <Link
+                        to="/productos"
+                        className="link flex items-center p-2 my-2 transition-colors duration-300 hover:bg-gray-200 rounded-lg">
+                        <FaShoppingBasket className="text-2xl" />
+                        {sidebarOpen && <span className="ml-4">Productos</span>}
+                    </Link>
+                    <button className="link flex items-center p-2 my-2 transition-colors duration-300 hover:bg-gray-200 rounded-lg">
+                        <MdOutlineAnalytics className="text-2xl" />
+                        {sidebarOpen && <span className="ml-4">Reportes</span>}
+                    </button>
+                </div>
+
+                <div className="my-4 border-t border-gray-600"></div>
+
+                {/* Links secundarios */}
+                <div className="sidebar flex flex-col">
+                    <button className="link flex items-center p-2 my-2 transition-colors duration-300 hover:bg-gray-200 rounded-lg">
+                        <AiOutlineSetting className="text-2xl" />
+                        {sidebarOpen && <span className="ml-4">Configuración</span>}
+                    </button>
+                    <button
+                        className="link flex items-center p-2 my-2 transition-colors duration-300 hover:bg-gray-200 rounded-lg"
+                        onClick={onLogout}>
+                        <MdLogout className="text-2xl" />
+                        {sidebarOpen && <span className="ml-4">Salir</span>}
+                    </button>
+                </div>
+            </div>
+            {/* Componente DarkMode */}
+            <div className="fixed top-2 right-2">
+                <DarkMode />
+            </div>
         </>
     );
-};
+}
 
 export default Sidebar;

@@ -46,27 +46,27 @@ export const LoginRegister = () => {
                 {showLoader ? ( // Mostrar loader si showLoader es true
                     <Loader />
                 ) : (
-                    <div className="flex flex-col justify-center bg-white dark:bg-zinc-800 p-6 rounded-lg shadow-2xl ">
-                        <h2 className="text-2xl font-bold text-center text-zinc-800 dark:text-zinc-100">Registrarse</h2>
+                    <div className="flex flex-col justify-center bg-white p-6 rounded-lg shadow-2xl ">
+                        <h2 className="text-2xl font-bold text-center text-zinc-800 ">Registrarse</h2>
 
-                        <p className="text-center p-4 text-zinc-600 dark:text-zinc-400">
+                        <p className="text-center p-4 text-zinc-600 ">
                             Ya estás registrado?{" "}
-                            <Link to="/" className="text-teal-600 dark:text-teal-400">
+                            <Link to="/" className="text-teal-600 ">
                                 Iniciar sesión
                             </Link>
                         </p>
-                        <hr className="flex-grow border-zinc-300 dark:border-zinc-700" />
+                        <hr className="flex-grow border-zinc-300 " />
 
                         <form method="POST" className="form my-6" onSubmit={handleSubmit(onSubmit)}>
                             {error && <div className="mb-4 text-xs text-red-500">{error}</div>}
                             {success && <div className="mb-4 text-xs text-green-500">{success}</div>}
                             <div className="mb-4 flex gap-4">
                                 <div>
-                                    <label htmlFor="cedula" className="block text-zinc-700 dark:text-zinc-300">
+                                    <label htmlFor="cedula" className="block text-zinc-700 ">
                                         Cedula
                                     </label>
                                     <input
-                                        className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                        className="w-full px-4 py-2 mt-2 border border-zinc-300  rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 "
                                         type="number"
                                         {...register("cedula")}
                                         id="cedula"
@@ -74,11 +74,11 @@ export const LoginRegister = () => {
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="nombre" className="block text-zinc-700 dark:text-zinc-300">
+                                    <label htmlFor="nombre" className="block text-zinc-700">
                                         Nombre
                                     </label>
                                     <input
-                                        className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                        className="w-full px-4 py-2 mt-2 border border-zinc-300  rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
                                         type="text"
                                         {...register("nombre")}
                                         id="nombre"
@@ -93,7 +93,7 @@ export const LoginRegister = () => {
                                         Apellido
                                     </label>
                                     <input
-                                        className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                        className="w-full px-4 py-2 mt-2 border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 "
                                         type="text"
                                         {...register("apellido")}
                                         id="apellido"
@@ -105,7 +105,7 @@ export const LoginRegister = () => {
                                         Email
                                     </label>
                                     <input
-                                        className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                        className="w-full px-4 py-2 mt-2 border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 "
                                         type="email"
                                         {...register("correo")}
                                         id="correo"
@@ -120,7 +120,7 @@ export const LoginRegister = () => {
                                         Telefono
                                     </label>
                                     <input
-                                        className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                        className="w-full px-4 py-2 mt-2 border border-zinc-300  rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 "
                                         type="number"
                                         {...register("telefono")}
                                         id="telefono"
@@ -132,7 +132,7 @@ export const LoginRegister = () => {
                                         Ciudad
                                     </label>
                                     <input
-                                        className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                        className="w-full px-4 py-2 mt-2 border border-zinc-300  rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 "
                                         type="text"
                                         {...register("ciudad")}
                                         id="ciudad"
@@ -147,7 +147,7 @@ export const LoginRegister = () => {
                                         Direccion
                                     </label>
                                     <input
-                                        className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                        className="w-full px-4 py-2 mt-2 border border-zinc-300  rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 "
                                         type="text"
                                         {...register("direccion")}
                                         id="direccion"
@@ -155,11 +155,11 @@ export const LoginRegister = () => {
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="password" className="block text-zinc-700 dark:text-zinc-300">
+                                    <label htmlFor="password" className="block text-zinc-700 ">
                                         Contraseña
                                     </label>
                                     <input
-                                        className="w-full px-4 py-2 mt-2 border border-zinc-300 dark:border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 dark:focus:ring-teal-400"
+                                        className="w-full px-4 py-2 mt-2 border border-zinc-300  rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600 "
                                         type="password"
                                         {...register("password")}
                                         id="password"
