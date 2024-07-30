@@ -2,7 +2,7 @@ const Pool = require("../../config/pg")
 
 const getProductos = async () => {
     const query = "SELECT * FROM productos";
-    const productos = await pool.query(query)
+    const productos = await Pool.query(query)
     return productos;
 }
 

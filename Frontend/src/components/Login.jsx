@@ -34,7 +34,7 @@ const Login = ({ onLogin }) => {
 
     return (
         <>
-            <div className="z-40 w-full flex justify-center items-center h-screen">
+            <div className="z-40  w-full flex justify-center items-center h-screen">
                 {showLoader ? (
                     <Loader />
                 ) : (
@@ -92,7 +92,6 @@ const Login = ({ onLogin }) => {
                     </div>
                 )}
             </div>
-            {/* Componente DarkMode */}
             <div className="fixed top-2 right-2">
                 <DarkMode />
             </div>
