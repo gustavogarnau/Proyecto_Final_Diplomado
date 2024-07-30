@@ -178,12 +178,12 @@
 }
 
 .dark-mode table thead{
-    background-color: #23262c;
+    background-color: #191b1f;
     color: var(--primary-ligth);
 }
 
 .dark-mode table tbody tr{
-    background-color: var(--primary-dark);
+    background-color: #23262c;
     color: var(--primary-ligth);
 }
 
@@ -227,20 +227,6 @@
 
 
 
-.content_principal{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100%;
-}
 
-.content_card{
-    padding-top: 38%;
-}
 
-@media (max-width: 728px) {
-  .content_card{
-    padding-top: 147% !important;
-}
-}
 

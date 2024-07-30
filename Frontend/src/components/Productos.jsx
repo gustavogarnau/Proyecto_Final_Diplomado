@@ -4,15 +4,16 @@ import { MdDelete } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
 
 const Productos = ({ onLogout }) => {
+    // productos
     return (
         <>
             <Sidebar onLogout={onLogout} />
 
-            <div className="pt-14">
+            <div className="  flex flex-col">
                 <div className="p-5">
                     <ModalProduct />
                 </div>
-                <div className=" shadow-md sm:rounded-lg">
+                <div className="p-22 relative overflow-x-auto">
                     <table className="w-full text-sm text-center  text-gray-500 ">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
                             <tr>
@@ -181,7 +182,67 @@ const Productos = ({ onLogout }) => {
                                 </td>
                             </tr>
                             <tr className="bg-white border-b">
-                                <td className="px-6 py-4">Magic Mouse 2</td>
+                                <td className="px-6 py-4">Magic Mouse 3</td>
+                                <td className="px-6 py-4">Black</td>
+                                <td className="px-6 py-4">Accessories</td>
+                                <td className="px-6 py-4">$99</td>
+                                <td className="px-6 py-4">Laptop</td>
+                                <td className="px-6 py-4">Laptop</td>
+                                <td className="px-6 py-4 flex gap-1">
+                                    <button
+                                        className="button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center "
+                                        type="button">
+                                        <BsPencilSquare className="text-base" />
+                                    </button>
+                                    <button
+                                        className="button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center "
+                                        type="button">
+                                        <MdDelete className="text-base" />
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr className="bg-white border-b">
+                                <td className="px-6 py-4">Magic Mouse 3</td>
+                                <td className="px-6 py-4">Black</td>
+                                <td className="px-6 py-4">Accessories</td>
+                                <td className="px-6 py-4">$99</td>
+                                <td className="px-6 py-4">Laptop</td>
+                                <td className="px-6 py-4">Laptop</td>
+                                <td className="px-6 py-4 flex gap-1">
+                                    <button
+                                        className="button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center "
+                                        type="button">
+                                        <BsPencilSquare className="text-base" />
+                                    </button>
+                                    <button
+                                        className="button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center "
+                                        type="button">
+                                        <MdDelete className="text-base" />
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr className="bg-white border-b">
+                                <td className="px-6 py-4">Magic Mouse 3</td>
+                                <td className="px-6 py-4">Black</td>
+                                <td className="px-6 py-4">Accessories</td>
+                                <td className="px-6 py-4">$99</td>
+                                <td className="px-6 py-4">Laptop</td>
+                                <td className="px-6 py-4">Laptop</td>
+                                <td className="px-6 py-4 flex gap-1">
+                                    <button
+                                        className="button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center "
+                                        type="button">
+                                        <BsPencilSquare className="text-base" />
+                                    </button>
+                                    <button
+                                        className="button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center "
+                                        type="button">
+                                        <MdDelete className="text-base" />
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr className="bg-white border-b">
+                                <td className="px-6 py-4">Magic Mouse 3</td>
                                 <td className="px-6 py-4">Black</td>
                                 <td className="px-6 py-4">Accessories</td>
                                 <td className="px-6 py-4">$99</td>

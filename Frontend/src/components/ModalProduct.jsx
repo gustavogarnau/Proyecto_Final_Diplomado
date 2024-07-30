@@ -25,9 +25,7 @@ const ModalProduct = () => {
                     <div className=" relative p-4 w-full max-w-md max-h-full">
                         <div className=" relative bg-white rounded-lg shadow ">
                             <div className="modal flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
-                                <h3 className="btn-modal text-lg font-semibold text-gray-900 ">
-                                    Agregar Producto
-                                </h3>
+                                <h3 className="btn-modal text-lg font-semibold text-gray-900 ">Agregar Producto</h3>
                                 <button
                                     type="button"
                                     onClick={cerrarModal}
@@ -46,9 +44,7 @@ const ModalProduct = () => {
                             <form className="p-4 md:p-5">
                                 <div className="grid gap-4 mb-4 grid-cols-2">
                                     <div className="col-span-2">
-                                        <label
-                                            htmlFor="name"
-                                            className="block mb-2 text-sm font-medium text-gray-900 ">
+                                        <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 ">
                                             Nombre del producto
                                         </label>
                                         <input
@@ -62,14 +58,14 @@ const ModalProduct = () => {
                                     </div>
                                     <div className="col-span-2 sm:col-span-1">
                                         <label
-                                            htmlFor="price"
+                                            htmlFor="precio"
                                             className="block mb-2 text-sm font-medium text-gray-900 ">
-                                            Precio
+                                            Precio por gramo
                                         </label>
                                         <input
                                             type="number"
-                                            name="price"
-                                            id="price"
+                                            name="precio"
+                                            id="precio"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                                             placeholder="$2999"
                                             required=""
@@ -77,12 +73,12 @@ const ModalProduct = () => {
                                     </div>
                                     <div className="col-span-2 sm:col-span-1">
                                         <label
-                                            htmlFor="category"
+                                            htmlFor="categoria"
                                             className="block mb-2 text-sm font-medium text-gray-900 ">
                                             Categoria
                                         </label>
                                         <select
-                                            id="category"
+                                            id="categoria"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
                                             <option selected="">Select category</option>
                                             <option value="TV">TV/Monitors</option>
@@ -90,6 +86,21 @@ const ModalProduct = () => {
                                             <option value="GA">Gaming/Console</option>
                                             <option value="PH">Phones</option>
                                         </select>
+                                    </div>
+                                    <div className="col-span-2">
+                                        <label
+                                            htmlFor="Descripcion"
+                                            className="block mb-2 text-sm font-medium text-gray-900 ">
+                                            Descripcion del producto
+                                        </label>
+                                        <textarea
+                                            type="text"
+                                            name="Descripcion"
+                                            id="Descripcion"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                                            placeholder="Nombre del producto"
+                                            required=""
+                                        />
                                     </div>
                                 </div>
                                 <button
@@ -102,7 +113,7 @@ const ModalProduct = () => {
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"></path>
                                     </svg>
-                                    Agregar producto
+                                    Agregar
                                 </button>
                             </form>
                         </div>

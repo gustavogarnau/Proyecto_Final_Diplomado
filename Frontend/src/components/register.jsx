@@ -42,7 +42,7 @@ export const LoginRegister = () => {
 
     return (
         <>
-            <div className="z-40 w-full flex justify-center">
+            <div className="z-40 w-full flex justify-center items-center h-screen">
                 {showLoader ? ( // Mostrar loader si showLoader es true
                     <Loader />
                 ) : (
@@ -176,7 +176,10 @@ export const LoginRegister = () => {
                     </div>
                 )}
             </div>
-            <DarkMode />
+            {/* Componente DarkMode */}
+            <div className="fixed top-2 right-2">
+                <DarkMode />
+            </div>
         </>
     );
 };
