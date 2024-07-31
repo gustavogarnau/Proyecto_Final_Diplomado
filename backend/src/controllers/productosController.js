@@ -27,15 +27,15 @@ const getProductosId = async (id = "") => {
 
 // Crear un nuevo producto
 const postCrearProducto = async (producto = {}) => {
-  const { nombre, descripcion, precio, cantidad, proveedor_id, categoria_id } =
+  const { nombre, descripcion, precio_por_gramo, cantidad_actual, proveedor_id, categoria_id } =
     producto;
   const query =
     "INSERT INTO productos (nombre, descripcion, precio_por_gramo, cantidad_actual, proveedor_id, categoria_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
   const parametros = [
     nombre,
     descripcion,
-    precio,
-    cantidad,
+    precio_por_gramo,
+    cantidad_actual,
     proveedor_id,
     categoria_id,
   ];
@@ -57,8 +57,8 @@ const putActualizarProducto = async (id = "", producto = {}) => {
   const parametros = [
     nombre,
     descripcion,
-    precio,
-    cantidad,
+    precio_por_gramo,
+    cantidad_actual,
     proveedor_id,
     categoria_id,
     id,
