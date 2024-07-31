@@ -14,16 +14,16 @@ const getProductosId = async ( id = "")=>{
 }
 
 const postCrearProducto = async (producto = {}) => {
-    const { nombre, descripcion, precio_por_gramo, cantidad_actual, proveedor_id, categoria_id } = producto;
+    const { nombre, descripcion, precio, cantidad, proveedor_id, categoria_id } = producto;
     const query = "INSERT INTO productos (nombre, descripcion, precio_por_gramo, cantidad_actual, proveedor_id, categoria_id) VALUES ($1, $2, $3, $4, $5, $6)";
-    const parametros = [nombre, descripcion, precio_por_gramo, cantidad_actual, proveedor_id, categoria_id];
+    const parametros = [nombre, descripcion, precio, cantidad, proveedor_id, categoria_id];
     const productos = await Pool.query(query, parametros);
     return productos;
 }
 
 const putActualizarProducto = async ( id = "", producto = {}) => {
     const { nombre, descripcion, precio, cantidad, proveedor_id, categoria_id } = producto;
-    const query = "UPDATE productos SET nombre = $1, descripcion = $2, precio = $3, cantidad = $4, proveedor_id = $5, categoria_id = $6 WHERE producto_id = $7";
+    const query = "UPDATE productos SET nombre = $1, descripcion = $2, precio_por_gramo = $3, cantidad_actual = $4, proveedor_id = $5, categoria_id = $6 WHERE producto_id = $7";
     const parametros = [nombre, descripcion, precio, cantidad, proveedor_id, categoria_id, id];
     const productos = await Pool.query(query, parametros);
     return productos;
