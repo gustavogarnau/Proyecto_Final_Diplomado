@@ -14,6 +14,7 @@ const proveedores = require("./src/routers/proveedoresRouter");
 const categoria = require("./src/routers/categoriasRouter");
 const productos = require("./src/routers/productosRouter");
 const movimientos =require("./src/routers/movimientosRouter")
+const estadisticas =require("./src/routers/estadisticasRouter")
 const {jwtVerificadorTiempoToken} = require("./src/utils/jwtUtil");
 
 const PORT = process.env.PORT || 4000;
@@ -30,6 +31,7 @@ app.use("/api/proveedores", proveedores)
 app.use("/api/categoria", categoria)
 app.use("/api/productos", productos)
 app.use("/api/movimientos", movimientos)
+app.use("/api/estadisticas", estadisticas)
 app.use(jwtVerificadorTiempoToken);
 
 app.get("/",  (req, res) => {
