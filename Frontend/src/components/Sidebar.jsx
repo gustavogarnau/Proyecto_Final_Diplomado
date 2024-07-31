@@ -54,13 +54,13 @@ function Sidebar({ onLogout }) {
                     <div className="sidebar flex flex-col">
                         <Link
                             to="/home"
-                            className="link flex items-center p-2 my-2 trbuttonnsition-colors duration-300 hover:bg-gray-200 rounded-lg">
+                            className="link flex items-center p-2 my-2  hover:bg-gray-200 rounded-lg">
                             <LuLayoutDashboard className="text-2xl" />
                             {sidebarOpen && <span className="ml-4">Home</span>}
                         </Link>
                         <div className="div flex flex-col">
                             <button
-                                className="link flex items-center p-2 my-2 transition-colors duration-300 hover:bg-gray-200 rounded-lg"
+                                className="link flex items-center p-2 my-2 hover:bg-gray-200 rounded-lg"
                                 onClick={toggleCollapse}>
                                 <LuShoppingBasket className="text-2xl" />
                                 {sidebarOpen && <span className="ml-4">Productos</span>}
@@ -69,20 +69,20 @@ function Sidebar({ onLogout }) {
                             <div className={`${isCollapsed ? "hidden" : "block"} ml-3 div`}>
                                 <Link
                                     to="/productos"
-                                    className="link flex gap-2 p-2 my-2 transition-colors duration-300 hover:bg-gray-200 rounded-lg">
+                                    className="link flex gap-2 p-2 my-2 hover:bg-gray-200 rounded-lg">
                                     <AiOutlineProduct className="text-2xl" />
                                     Productos
                                 </Link>
                                 <Link
                                     to="/movimientos"
-                                    className="link flex gap-2 p-2 my-2 transition-colors duration-300 hover:bg-gray-200 rounded-lg">
+                                    className="link flex gap-2 p-2 my-2  hover:bg-gray-200 rounded-lg">
                                     <HiOutlineClipboardDocumentList className="text-2xl" />
                                     Movimientos
                                 </Link>
                             </div>
                         </div>
 
-                        <button className="link flex items-center p-2 my-2 transition-colors duration-300 hover:bg-gray-200 rounded-lg">
+                        <button className="link flex items-center p-2 my-2  hover:bg-gray-200 rounded-lg">
                             <MdOutlineAnalytics className="text-2xl" />
                             {sidebarOpen && <span className="ml-4">Reportes</span>}
                         </button>
@@ -92,12 +92,12 @@ function Sidebar({ onLogout }) {
 
                     {/* Links secundarios */}
                     <div className="sidebar flex flex-col">
-                        <button className="link flex items-center p-2 my-2 transition-colors duration-300 hover:bg-gray-200 rounded-lg">
+                        <button className="link flex items-center p-2 my-2  hover:bg-gray-200 rounded-lg">
                             <AiOutlineSetting className="text-2xl" />
                             {sidebarOpen && <span className="ml-4">Configuración</span>}
                         </button>
                         <button
-                            className="link flex items-center p-2 my-2 transition-colors duration-300 hover:bg-gray-200 rounded-lg"
+                            className="link flex items-center p-2 my-2  hover:bg-gray-200 rounded-lg"
                             onClick={onLogout}>
                             <MdLogout className="text-2xl" />
                             {sidebarOpen && <span className="ml-4">Salir</span>}
