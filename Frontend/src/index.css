@@ -218,7 +218,12 @@
 }
 
 .dark-mode .link{
+    background-color: #2c3035;
     color: var(--primary-ligth);
+}
+
+.dark-mode .div{
+    background-color: #2c3035;
 }
 
 .dark-mode .link:hover{

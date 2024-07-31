@@ -45,11 +45,11 @@ export const Activacion = () => {
     }, [token, navigate]);
 
     return (
-        <div className="p-2">
+        <div className="p-2 w-full flex justify-center items-center h-screen">
             {showLoader ? (
                 <Loader />
             ) : tokenStatus ? (
-                <div className={`card ${tokenStatus.valid ? "success" : "error"}`}>
+                <div className={`card ${tokenStatus.valid ? "success" : "error"} `}>
                     <div className="icon"></div>
                     <h1 className="h1">{tokenStatus.message}</h1>
                     {tokenStatus.valid && (

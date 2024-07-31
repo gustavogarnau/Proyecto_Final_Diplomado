@@ -5,7 +5,7 @@ import Register from "./components/register";
 import { Autenticacion } from "./layouts/Autenticacion"; // Asegúrate de importar el componente Autenticacion correctamente
 import { Activacion } from "./components/Activacion";
 import Home from "./components/Home";
-import Productos from "./components/Productos";
+import Productos from "./pages/Productos/Productos";
 import Movimientos from "./components/Movimientos";
 
 export function App() {
