@@ -50,8 +50,7 @@ const postCrearProducto = async (producto = {}) => {
 
 // Actualizar un producto existente
 const putActualizarProducto = async (id = "", producto = {}) => {
-  const { nombre, descripcion, precio, cantidad, proveedor_id, categoria_id } =
-    producto;
+  const { nombre, descripcion, precio_por_gramo, cantidad_actual, proveedor_id, categoria_id } = producto;
   const query =
     "UPDATE productos SET nombre = $1, descripcion = $2, precio_por_gramo = $3, cantidad_actual = $4, proveedor_id = $5, categoria_id = $6 WHERE producto_id = $7 RETURNING *";
   const parametros = [
