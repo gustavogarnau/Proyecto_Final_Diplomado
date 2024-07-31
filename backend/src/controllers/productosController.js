@@ -14,9 +14,9 @@ const getProductosId = async ( id = "")=>{
 }
 
 const postCrearProducto = async (producto = {}) => {
-    const { nombre, descripcion, precio, cantidad, proveedor_id, categoria_id } = producto;
-    const query = "INSERT INTO productos (nombre, descripcion, precio, cantidad, proveedor_id, categoria_id) VALUES ($1, $2, $3, $4, $5, $6)";
-    const parametros = [nombre, descripcion, precio, cantidad, proveedor_id, categoria_id];
+    const { nombre, descripcion, precio_por_gramo, cantidad_actual, proveedor_id, categoria_id } = producto;
+    const query = "INSERT INTO productos (nombre, descripcion, precio_por_gramo, cantidad_actual, proveedor_id, categoria_id) VALUES ($1, $2, $3, $4, $5, $6)";
+    const parametros = [nombre, descripcion, precio_por_gramo, cantidad_actual, proveedor_id, categoria_id];
     const productos = await Pool.query(query, parametros);
     return productos;
 }

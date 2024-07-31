@@ -1,35 +1,53 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-const useProductos = () => {
+const useFetchProductos = () => {
     const [productos, setProductos] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchProductos = async () => {
-            setLoading(true);
-            try {
-                const response = await fetch(`${import.meta.env.VITE_USER_API}/api/productos`);
-                console.log("Response status:", response.status);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                console.log("Fetched data:", data);
-                setProductos(data);
-            } catch (error) {
-                console.error("Error fetching productos:", error);
-                setError(error.message);
-            } finally {
-                setLoading(false);
+    const fetchProductos = useCallback(async () => {
+        setLoading(true);
+        try {
+            const response = await fetch(`${import.meta.env.VITE_USER_API}/api/productos`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-        };
-
-        fetchProductos();
+            const data = await response.json();
+            setProductos(data);
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
     }, []);
 
+    useEffect(() => {
+        fetchProductos();
+    }, [fetchProductos]);
 
-    return { productos, error, loading };
+    const addProducto = async (producto) => {
+        setLoading(true); // Activa el loader cuando se está agregando un producto
+        try {
+            const response = await fetch(`${import.meta.env.VITE_USER_API}/api/productos`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(producto),
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            // Actualiza la lista de productos después de agregar el nuevo producto
+            await fetchProductos();
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setLoading(false); // Desactiva el loader
+        }
+    };
+
+    return { productos, error, loading, addProducto };
 };
 
-export default useProductos;
+export default useFetchProductos;
