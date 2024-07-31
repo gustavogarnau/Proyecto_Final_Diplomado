@@ -26,7 +26,7 @@ const useFetchProductos = () => {
     }, [fetchProductos]);
 
     const addProducto = async (producto) => {
-        setLoading(true); // Activa el loader cuando se está agregando un producto
+        setLoading(true);
         try {
             const response = await fetch(`${import.meta.env.VITE_USER_API}/api/productos`, {
                 method: "POST",
@@ -38,16 +38,53 @@ const useFetchProductos = () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            // Actualiza la lista de productos después de agregar el nuevo producto
             await fetchProductos();
         } catch (error) {
             setError(error.message);
         } finally {
-            setLoading(false); // Desactiva el loader
+            setLoading(false);
         }
     };
 
-    return { productos, error, loading, addProducto };
+    const editProducto = async (id, updatedProducto) => {
+        setLoading(true);
+        try {
+            const response = await fetch(`${import.meta.env.VITE_USER_API}/api/productos/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedProducto),
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            await fetchProductos(); 
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const deleteProducto = async (id) => {
+        setLoading(true);
+        try {
+            const response = await fetch(`${import.meta.env.VITE_USER_API}/api/productos/${id}`, {
+                method: "DELETE",
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            await fetchProductos();
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return { productos, error, loading, addProducto, editProducto, deleteProducto };
 };
 
 export default useFetchProductos;

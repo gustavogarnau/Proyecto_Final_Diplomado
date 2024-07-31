@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import useProductos from "../pages/Productos/hook/useFetchProductos";
+import useProductos from "../../hook/useFetchProductos";
 
 const ModalProduct = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);

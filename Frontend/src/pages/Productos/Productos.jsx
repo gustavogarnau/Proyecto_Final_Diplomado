@@ -1,18 +1,30 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useFetchProductos from "./hook/useFetchProductos";
-import ModalProduct from "../../components/ModalProduct";
+import ModalProduct from "./components/AgregarModal/ModalProduct";
 import Sidebar from "../../components/Sidebar";
 import { MdDelete } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
 import { Pagination } from "@mui/material";
+import EditarProduct from "./components/EditarModal/EditarProduct"; // Importa tu componente de edición
 
 const Productos = ({ onLogout }) => {
-    const { productos, error, loading, addProducto } = useFetchProductos();
+    const { productos, error, loading, addProducto, editProducto, deleteProducto } = useFetchProductos();
     const [page, setPage] = useState(1);
+    const [productoEditado, setProductoEditado] = useState(null); // Estado para el producto a editar
     const itemsPerPage = 5;
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
+    };
+
+    const handleEdit = (producto) => {
+        setProductoEditado(producto); // Establece el producto a editar
+    };
+
+    const handleDelete = (id) => {
+        if (window.confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+            deleteProducto(id);
+        }
     };
 
     const paginatedProductos = productos.body?.data?.slice((page - 1) * itemsPerPage, page * itemsPerPage);
@@ -68,12 +80,14 @@ const Productos = ({ onLogout }) => {
                                                 <td className="px-6 py-4 flex gap-1 justify-center">
                                                     <button
                                                         className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center"
-                                                        type="button">
+                                                        type="button"
+                                                        onClick={() => handleEdit(producto)}>
                                                         <BsPencilSquare className="text-base" />
                                                     </button>
                                                     <button
-                                                        className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center"
-                                                        type="button">
+                                                        className="block text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center"
+                                                        type="button"
+                                                        onClick={() => handleDelete(producto.producto_id)}>
                                                         <MdDelete className="text-base" />
                                                     </button>
                                                 </td>
@@ -99,6 +113,14 @@ const Productos = ({ onLogout }) => {
                     )}
                 </div>
             </div>
+            {/* Componente de edición */}
+            {productoEditado && (
+                <EditarProduct
+                    editProducto={editProducto}
+                    productoEditado={productoEditado}
+                    setProductoEditado={setProductoEditado}
+                />
+            )}
         </>
     );
 };
