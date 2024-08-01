@@ -49,6 +49,7 @@ const useFetchProvedores = () => {
     const editProveedores = async (id, updatedProveedores) => {
         setLoading(true);
         try {
+            console.log("Datos enviados al backend para editar:", updatedProveedores);
             const response = await fetch(`${import.meta.env.VITE_USER_API}/api/proveedores/${id}`, {
                 method: "PUT",
                 headers: {

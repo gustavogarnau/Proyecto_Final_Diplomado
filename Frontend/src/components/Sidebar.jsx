@@ -5,6 +5,8 @@ import { MdOutlineAnalytics, MdLogout } from "react-icons/md";
 import { AiOutlineProduct } from "react-icons/ai";
 import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
 import { FiUsers } from "react-icons/fi";
+import { BiCategory } from "react-icons/bi";
+import { RiUserSettingsLine } from "react-icons/ri";
 import logo from "../assets/images/logo.png";
 import DarkMode from "../layouts/DarkMode";
 import { Link } from "react-router-dom";
@@ -12,6 +14,7 @@ import { Link } from "react-router-dom";
 function Sidebar({ onLogout }) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(true);
+    const [isCollapsed2, setIsCollapsed2] = useState(true);
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
@@ -20,7 +23,12 @@ function Sidebar({ onLogout }) {
     const toggleCollapse = () => {
         setIsCollapsed(!isCollapsed);
     };
+    
 
+    const toggleCollapse2 = () => {
+        setIsCollapsed2(!isCollapsed2);
+    };
+    
     return (
         <>
             {/* Logo */}
@@ -95,10 +103,32 @@ function Sidebar({ onLogout }) {
 
                     {/* Links secundarios */}
                     <div className="sidebar flex flex-col">
-                        <button className="link flex items-center p-2 my-2  hover:bg-gray-200 rounded-lg">
+                        <div className="div flex flex-col">
+                            <button
+                                className="link flex items-center p-2 my-2 hover:bg-gray-200 rounded-lg"
+                                onClick={toggleCollapse2}>
+                                <AiOutlineSetting className="text-2xl" />
+                                {sidebarOpen && <span className="ml-4">Configuración</span>}
+                                <span className="ml-auto">{isCollapsed2}</span>
+                            </button>
+                            <div className={`${isCollapsed2 ? "hidden" : "block"} ml-3 div`}>
+                                <Link to="/roles" className="link flex gap-2 p-2 my-2 hover:bg-gray-200 rounded-lg">
+                                    <RiUserSettingsLine className="text-2xl" />
+                                    Roles
+                                </Link>
+                                <Link
+                                    to="/categoria"
+                                    className="link flex gap-2 p-2 my-2  hover:bg-gray-200 rounded-lg">
+                                    <BiCategory className="text-2xl" />
+                                    Categoria
+                                </Link>
+                            </div>
+                        </div>
+
+                        {/* <button className="link flex items-center p-2 my-2  hover:bg-gray-200 rounded-lg">
                             <AiOutlineSetting className="text-2xl" />
                             {sidebarOpen && <span className="ml-4">Configuración</span>}
-                        </button>
+                        </button> */}
                         <button
                             className="link flex items-center p-2 my-2  hover:bg-gray-200 rounded-lg"
                             onClick={onLogout}>

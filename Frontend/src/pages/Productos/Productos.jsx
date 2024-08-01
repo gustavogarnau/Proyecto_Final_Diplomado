@@ -6,6 +6,8 @@ import { MdDelete } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
 import { Pagination } from "@mui/material";
 import EditarProduct from "./components/EditarModal/EditarProduct"; // Importa tu componente de edición
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 const Productos = ({ onLogout }) => {
     const { productos, error, loading, addProducto, editProducto, deleteProducto, fetchProductos } =
@@ -24,9 +26,25 @@ const Productos = ({ onLogout }) => {
     };
 
     const handleDelete = (id) => {
-        if (window.confirm("¿Estás seguro de que deseas eliminar este producto?")) {
-            deleteProducto(id);
-        }
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "No podrás revertir esto!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, eliminar!",
+            cancelButtonText: "No, Cancelar!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteProducto(id);
+                Swal.fire({
+                    title: "¡Eliminado!",
+                    text: "Tu producto ha sido eliminado.",
+                    icon: "success",
+                });
+            }
+        });
     };
 
     const paginatedProductos = productos.body?.data?.slice((page - 1) * itemsPerPage, page * itemsPerPage);

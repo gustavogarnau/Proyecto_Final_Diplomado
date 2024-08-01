@@ -38,8 +38,9 @@ const EditarProduct = ({ editProducto, productoEditado, setProductoEditado }) =>
 
     const onSubmit = async (data) => {
         console.log("Datos del formulario:", data);
-        
-        if (!productoEditado || !productoEditado.id) {
+        console.log("Producto editado antes de la actualización:", productoEditado);
+
+        if (!productoEditado || !productoEditado.producto_id) {
             console.error("ID del producto no está definido", productoEditado);
             return;
         }
@@ -58,7 +59,8 @@ const EditarProduct = ({ editProducto, productoEditado, setProductoEditado }) =>
         };
 
         try {
-            await editProducto(productoEditado.id, datos);
+            console.log("Datos a enviar a la API:", datos);
+            await editProducto(productoEditado.producto_id, datos);
             handleClose();
         } catch (error) {
             console.error("Error al editar el producto:", error);
@@ -128,3 +130,5 @@ const EditarProduct = ({ editProducto, productoEditado, setProductoEditado }) =>
 };
 
 export default EditarProduct;
+
+

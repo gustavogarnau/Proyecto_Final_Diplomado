@@ -32,26 +32,27 @@ const EditarProveedores = ({ editProveedores, proveedoresEditado, setProveedores
 
     const onSubmit = async (data) => {
         console.log("Datos del formulario:", data);
+        console.log("Producto editado antes de la actualización:", proveedoresEditado);
 
-        if (!proveedoresEditado || !proveedoresEditado.id) {
-            console.error("ID del proveedores no está definido", proveedoresEditado);
-            return;
-        }
 
-        const contacto = parseFloat(data.contacto) || 0;
+         if (!proveedoresEditado || !proveedoresEditado.proveedor_id) {
+             console.error("ID del producto no está definido", proveedoresEditado);
+             return;
+         }
+
         const telefono = parseFloat(data.telefono) || 0;
 
         const datos = {
             ...data,
-            contacto,
             telefono,
         };
 
         try {
-            await editProveedores(proveedoresEditado.id, datos);
+            console.log("Datos a enviar a la API:", datos);
+            await editProveedores(proveedoresEditado.proveedor_id, datos);
             handleClose();
         } catch (error) {
-            console.error("Error al editar el proveedores:", error);
+            console.error("Error al editar el producto:", error);
         }
     };
 
@@ -66,7 +67,12 @@ const EditarProveedores = ({ editProveedores, proveedoresEditado, setProveedores
                         variant="outlined"
                         fullWidth
                     />
-                    <TextField {...register("contacto")} label="Contacto" variant="outlined" fullWidth />
+                    <TextField
+                        {...register("contacto", { required: true })}
+                        label="Contacto"
+                        variant="outlined"
+                        fullWidth
+                    />
 
                     <TextField
                         {...register("telefono", { valueAsNumber: true, required: true })}

@@ -6,6 +6,8 @@ import { MdDelete } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
 import { Pagination } from "@mui/material";
 import EditarProveedores from "./components/EditarModal/EditarProveedores"; 
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 const Provedor = ({ onLogout }) => {
     const { proveedores, error, loading, addProveedores, editProveedores, deleteProveedores, fetchProveedores } =
@@ -24,9 +26,25 @@ const Provedor = ({ onLogout }) => {
     };
 
     const handleDelete = (id) => {
-        if (window.confirm("¿Estás seguro de que deseas eliminar este proveedores?")) {
-            deleteProveedores(id);
-        }
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "No podrás revertir esto!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, eliminar!",
+            cancelButtonText: "No, Cancelar!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteProveedores(id);
+                Swal.fire({
+                    title: "¡Eliminado!",
+                    text: "Tu provedor ha sido eliminado.",
+                    icon: "success",
+                });
+            }
+        });
     };
 
     const paginatedProveedores = proveedores.body?.data?.slice((page - 1) * itemsPerPage, page * itemsPerPage);
@@ -66,7 +84,7 @@ const Provedor = ({ onLogout }) => {
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody className="uppercase">
                                     {paginatedProveedores?.length > 0 ? (
                                         paginatedProveedores.map((proveedores) => (
                                             <tr key={proveedores.id} className="bg-white border-b">

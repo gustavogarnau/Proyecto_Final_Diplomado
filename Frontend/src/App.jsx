@@ -6,7 +6,7 @@ import { Autenticacion } from "./layouts/Autenticacion"; // Asegúrate de import
 import { Activacion } from "./components/Activacion";
 import Home from "./pages/Home/Home";
 import Productos from "./pages/Productos/Productos";
-import Movimientos from "./components/Movimientos";
+import Movimientos from "./pages/Movimientos/Movimientos";
 import Provedor from "./pages/Provedores/Provedor";
 
 export function App() {

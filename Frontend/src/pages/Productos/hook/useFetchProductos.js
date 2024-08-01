@@ -49,6 +49,7 @@ const useFetchProductos = () => {
     const editProducto = async (id, updatedProducto) => {
         setLoading(true);
         try {
+            console.log("Datos enviados al backend para editar:", updatedProducto);
             const response = await fetch(`${import.meta.env.VITE_USER_API}/api/productos/${id}`, {
                 method: "PUT",
                 headers: {
