@@ -1,10 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import Autenticacion from "../layouts/Autenticacion";
+import Autenticacion from "../../layouts/Autenticacion";
 import { useForm } from "react-hook-form";
-import { useLogin } from "../hook/useLogin";
+import { useLogin } from "./hook/useLogin";
 import { useState } from "react";
-import DarkMode from "../layouts/DarkMode";
-import Loader from "../layouts/Loader/Loader";
+import DarkMode from "../../layouts/DarkMode";
+import Loader from "../../layouts/Loader/Loader";
 
 const Login = ({ onLogin }) => {
     const { register, handleSubmit } = useForm();

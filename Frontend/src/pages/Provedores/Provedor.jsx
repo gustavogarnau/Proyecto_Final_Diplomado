@@ -1,45 +1,45 @@
 import { useState } from "react";
-import useFetchProductos from "./hook/useFetchProductos";
-import ModalProduct from "./components/AgregarModal/ModalProduct";
+import useFetchProvedores from "./hook/useFetchProvedores";
+import AgregarModal from "./components/AgregarModal/AgregarModal";
 import Sidebar from "../../components/Sidebar";
 import { MdDelete } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
 import { Pagination } from "@mui/material";
-import EditarProduct from "./components/EditarModal/EditarProduct"; // Importa tu componente de edición
+import EditarProveedores from "./components/EditarModal/EditarProveedores"; 
 
-const Productos = ({ onLogout }) => {
-    const { productos, error, loading, addProducto, editProducto, deleteProducto, fetchProductos } =
-        useFetchProductos();
+const Provedor = ({ onLogout }) => {
+    const { proveedores, error, loading, addProveedores, editProveedores, deleteProveedores, fetchProveedores } =
+        useFetchProvedores();
     const [page, setPage] = useState(1);
-    const [productoEditado, setProductoEditado] = useState(null); // Estado para el producto a editar
+    const [proveedoresEditado, setProveedoresEditado] = useState(null); // Estado para el proveedores a editar
     const itemsPerPage = 5;
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
 
-    const handleEdit = (producto) => {
-        console.log("Producto seleccionado para editar:", producto);
-        setProductoEditado(producto); // Establece el producto a editar
+    const handleEdit = (proveedores) => {
+        console.log("Proveedores seleccionado para editar:", proveedores);
+        setProveedoresEditado(proveedores); // Establece el proveedores a editar
     };
 
     const handleDelete = (id) => {
-        if (window.confirm("¿Estás seguro de que deseas eliminar este producto?")) {
-            deleteProducto(id);
+        if (window.confirm("¿Estás seguro de que deseas eliminar este proveedores?")) {
+            deleteProveedores(id);
         }
     };
 
-    const paginatedProductos = productos.body?.data?.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+    const paginatedProveedores = proveedores.body?.data?.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 
     return (
         <>
             <Sidebar onLogout={onLogout} />
             <div className="flex flex-col min-h-screen max-[768px]:w-full p-2 justify-center items-center">
-                <div className="p-5 flex items-start w-4/5 max-[768px]:pt-10">
-                    <ModalProduct addProducto={addProducto} fetchProductos={fetchProductos} />
+                <div className="p-5 flex items-start w-full max-[768px]:pt-10">
+                    <AgregarModal addProveedores={addProveedores} fetchProveedores={fetchProveedores} />
                 </div>
-                <div className="relative overflow-x-auto shadow-md rounded-lg w-5/6 max-[768px]:w-full max-[768px]:p-2">
-                    {loading && <p className="text-gray-500">Cargando productos...</p>}
+                <div className="relative overflow-x-auto shadow-md rounded-lg w-full max-[768px]:w-full max-[768px]:p-2">
+                    {loading && <p className="text-gray-500">Cargando proveedores...</p>}
                     {error && <p className="text-red-500">Error: {error}</p>}
                     {!loading && !error && (
                         <>
@@ -47,22 +47,19 @@ const Productos = ({ onLogout }) => {
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                     <tr>
                                         <th scope="col" className="px-6 py-3">
-                                            Id producto
+                                            Id proveedor
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Nombre
+                                            Nombre ditribuidora
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Descripción
+                                            Nombre provedor
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Cantidad actual
+                                            Telefono
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Precio por gramo
-                                        </th>
-                                        <th scope="col" className="px-6 py-3">
-                                            Fecha registro
+                                            Direccion
                                         </th>
                                         <th scope="col" className="px-6 py-3">
                                             Acciones
@@ -70,26 +67,25 @@ const Productos = ({ onLogout }) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {paginatedProductos?.length > 0 ? (
-                                        paginatedProductos.map((producto) => (
-                                            <tr key={producto.id} className="bg-white border-b">
-                                                <td className="px-6 py-4">{producto.producto_id}</td>
-                                                <td className="px-6 py-4">{producto.nombre}</td>
-                                                <td className="px-6 py-4">{producto.descripcion}</td>
-                                                <td className="px-6 py-4">{producto.cantidad_actual}</td>
-                                                <td className="px-6 py-4">{producto.precio_por_gramo}</td>
-                                                <td className="px-6 py-4">{producto.fecha_registro}</td>
+                                    {paginatedProveedores?.length > 0 ? (
+                                        paginatedProveedores.map((proveedores) => (
+                                            <tr key={proveedores.id} className="bg-white border-b">
+                                                <td className="px-6 py-4">{proveedores.proveedor_id}</td>
+                                                <td className="px-6 py-4">{proveedores.nombre}</td>
+                                                <td className="px-6 py-4">{proveedores.contacto}</td>
+                                                <td className="px-6 py-4">{proveedores.telefono}</td>
+                                                <td className="px-6 py-4">{proveedores.direccion}</td>
                                                 <td className="px-6 py-4 flex gap-1 justify-center">
                                                     <button
                                                         className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center"
                                                         type="button"
-                                                        onClick={() => handleEdit(producto)}>
+                                                        onClick={() => handleEdit(proveedores)}>
                                                         <BsPencilSquare className="text-base" />
                                                     </button>
                                                     <button
                                                         className="block text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center"
                                                         type="button"
-                                                        onClick={() => handleDelete(producto.producto_id)}>
+                                                        onClick={() => handleDelete(proveedores.proveedor_id)}>
                                                         <MdDelete className="text-base" />
                                                     </button>
                                                 </td>
@@ -98,14 +94,14 @@ const Productos = ({ onLogout }) => {
                                     ) : (
                                         <tr>
                                             <td colSpan="7" className="px-6 py-4 text-center">
-                                                No hay productos disponibles
+                                                No hay proveedores disponibles
                                             </td>
                                         </tr>
                                     )}
                                 </tbody>
                             </table>
                             <Pagination
-                                count={Math.ceil(productos.body?.data?.length / itemsPerPage)}
+                                count={Math.ceil(proveedores.body?.data?.length / itemsPerPage)}
                                 page={page}
                                 onChange={handleChangePage}
                                 color="primary"
@@ -116,15 +112,15 @@ const Productos = ({ onLogout }) => {
                 </div>
             </div>
             {/* Componente de edición */}
-            {productoEditado && (
-                <EditarProduct
-                    editProducto={editProducto}
-                    productoEditado={productoEditado}
-                    setProductoEditado={setProductoEditado}
+            {proveedoresEditado && (
+                <EditarProveedores
+                    editProveedores={editProveedores}
+                    proveedoresEditado={proveedoresEditado}
+                    setProveedoresEditado={setProveedoresEditado}
                 />
             )}
         </>
     );
 };
 
-export default Productos;
+export default Provedor;

@@ -172,7 +172,8 @@
     color: #ffffff;
 }
 
-.dark-mode input{
+.dark-mode input,
+.dark-mode textarea{
     background-color: var(--primary-dark);
     color: #ffffff;
 }
@@ -187,14 +188,11 @@
     color: var(--primary-ligth);
 }
 
-.dark-mode .button,
 .dark-mode .modal{
     background-color: #23262c;
 }
 
-.dark-mode .button:hover{
-    background-color: #16181b;
-}
+
 
 .dark-mode .btn-modal{
     color: var(--primary-ligth);

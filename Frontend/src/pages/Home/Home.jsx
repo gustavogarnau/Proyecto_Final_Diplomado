@@ -1,5 +1,5 @@
-import Sidebar from "./Sidebar";
-import Chart from "./Charts/Chart";
+import Sidebar from "../../components/Sidebar";
+import Chart from "../../components/Charts/Chart";
 
 const Home = ({ onLogout }) => {
     return (

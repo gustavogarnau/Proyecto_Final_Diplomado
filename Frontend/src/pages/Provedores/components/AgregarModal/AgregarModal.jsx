@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-// import useFetchProductos from "../../hook/useFetchProductos";
 
-const ModalProduct = ({ addProducto, fetchProductos }) => {
+const AgregarModal = ({ addProveedores, fetchProveedores }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [error, setError] = useState(null);
     const { register, handleSubmit, reset } = useForm();
@@ -12,12 +11,12 @@ const ModalProduct = ({ addProducto, fetchProductos }) => {
 
     const onSubmit = async (data) => {
         try {
-            await addProducto(data);
-            await fetchProductos(); // Actualiza los productos después de agregar uno nuevo
+            await addProveedores(data);
+            await fetchProveedores(); // Actualiza los proveedoress después de agregar uno nuevo
             reset();
             cerrarModal();
         } catch (error) {
-            console.error("Error agregando producto:", error);
+            console.error("Error agregando proveedores:", error);
             setError(error.message);
         }
     };
@@ -26,9 +25,9 @@ const ModalProduct = ({ addProducto, fetchProductos }) => {
         <>
             <button
                 onClick={abrirModal}
-                className="button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className=" block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 type="button">
-                Agregar Producto
+                Agregar Provedor
             </button>
 
             {modalIsOpen && (
@@ -58,93 +57,51 @@ const ModalProduct = ({ addProducto, fetchProductos }) => {
                                         <label
                                             htmlFor="nombre"
                                             className="block mb-2 text-sm font-medium text-gray-900">
-                                            Nombre del producto
+                                            Nombre de la distribuidora
                                         </label>
                                         <input
                                             type="text"
                                             id="nombre"
                                             {...register("nombre", { required: true })}
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                            placeholder="Nombre del producto"
+                                            placeholder="Nombre de la distribuidora"
                                         />
                                     </div>
                                     <div className="col-span-2 sm:col-span-1">
                                         <label
-                                            htmlFor="precio_por_gramo"
+                                            htmlFor="nombre"
                                             className="block mb-2 text-sm font-medium text-gray-900">
-                                            Precio por gramo
+                                            Nombre del provedor
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="contacto"
+                                            {...register("contacto", { required: true })}
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                            placeholder="Nombre del provedor"
+                                        />
+                                    </div>
+                                    <div className="col-span-2 sm:col-span-1">
+                                        <label
+                                            htmlFor="telefono"
+                                            className="block mb-2 text-sm font-medium text-gray-900">
+                                            Telefono
                                         </label>
                                         <input
                                             type="number"
-                                            id="precio_por_gramo"
-                                            {...register("precio_por_gramo", { required: true })}
+                                            id="telefono"
+                                            {...register("telefono", { required: true })}
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                            placeholder="$2999"
+                                            placeholder="3013354865"
                                         />
                                     </div>
-                                    <div className="col-span-2 sm:col-span-1">
-                                        <label
-                                            htmlFor="cantidad_actual"
-                                            className="block mb-2 text-sm font-medium text-gray-900">
-                                            Cantidad actual
-                                        </label>
-                                        <input
-                                            type="number"
-                                            id="cantidad_actual"
-                                            {...register("cantidad_actual", { required: true })}
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                            placeholder="99999"
-                                        />
-                                    </div>
-                                    <div className="col-span-2 sm:col-span-1">
-                                        <label
-                                            htmlFor="categoria_id"
-                                            className="block mb-2 text-sm font-medium text-gray-900">
-                                            Categoria
-                                        </label>
-                                        <select
-                                            id="categoria_id"
-                                            {...register("categoria_id", { required: true })}
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                                            <option selected disabled>
-                                                Seleccione la categoria
-                                            </option>
-                                            <option value="1">Esencia</option>
-                                            <option value="2">PC</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="col-span-2 sm:col-span-1">
-                                        <label
-                                            htmlFor="proveedor_id"
-                                            className="block mb-2 text-sm font-medium text-gray-900">
-                                            Proveedor
-                                        </label>
-                                        <select
-                                            id="proveedor_id"
-                                            {...register("proveedor_id", { required: true })}
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                                            <option selected disabled>
-                                                Seleccione la proveedor
-                                            </option>
-                                            <option value="1">David</option>
-                                            <option value="2">Juan</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="col-span-2">
-                                        <label
-                                            htmlFor="descripcion"
-                                            className="block mb-2 text-sm font-medium text-gray-900">
-                                            Descripción del producto
-                                        </label>
-                                        <textarea
-                                            id="descripcion"
-                                            {...register("descripcion", { required: true })}
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                            placeholder="Descripción del producto"
-                                        />
-                                    </div>
+                                    <input
+                                        type="text"
+                                        id="direccion"
+                                        {...register("direccion", { required: true })}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeholder="Direccion del producto"
+                                    />
                                 </div>
                                 <button
                                     type="submit"
@@ -168,4 +125,4 @@ const ModalProduct = ({ addProducto, fetchProductos }) => {
     );
 };
 
-export default ModalProduct;
+export default AgregarModal;

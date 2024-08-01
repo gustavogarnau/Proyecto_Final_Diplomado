@@ -1,12 +1,13 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Login from "./components/Login";
-import Register from "./components/register";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/register";
 import { Autenticacion } from "./layouts/Autenticacion"; // Asegúrate de importar el componente Autenticacion correctamente
 import { Activacion } from "./components/Activacion";
-import Home from "./components/Home";
+import Home from "./pages/Home/Home";
 import Productos from "./pages/Productos/Productos";
 import Movimientos from "./components/Movimientos";
+import Provedor from "./pages/Provedores/Provedor";
 
 export function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("isAuthenticated") === "true");
@@ -47,6 +48,10 @@ export function App() {
             <Route
                 path="/movimientos"
                 element={isAuthenticated ? <Movimientos onLogout={logout} /> : <Navigate to="/" />}
+            />
+            <Route
+                path="/provedores"
+                element={isAuthenticated ? <Provedor onLogout={logout} /> : <Navigate to="/" />}
             />
         </Routes>
     );

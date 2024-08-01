@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useRegister } from "../hook/useRegister";
+import { useRegister } from "./hook/useRegister";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Loader from "../layouts/Loader/Loader";
-import DarkMode from "../layouts/DarkMode";
+import Loader from "../../layouts/Loader/Loader";
+import DarkMode from "../../layouts/DarkMode";
 
 export const LoginRegister = () => {
     const { register, handleSubmit, reset } = useForm();

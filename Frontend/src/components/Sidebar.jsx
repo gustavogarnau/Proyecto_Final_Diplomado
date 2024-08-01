@@ -4,6 +4,7 @@ import { AiOutlineLeft, AiOutlineSetting, AiOutlineMenu } from "react-icons/ai";
 import { MdOutlineAnalytics, MdLogout } from "react-icons/md";
 import { AiOutlineProduct } from "react-icons/ai";
 import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
+import { FiUsers } from "react-icons/fi";
 import logo from "../assets/images/logo.png";
 import DarkMode from "../layouts/DarkMode";
 import { Link } from "react-router-dom";
@@ -52,9 +53,7 @@ function Sidebar({ onLogout }) {
                 <div className={`${sidebarOpen ? "block" : "hidden md:block"} max-[768px]:h-full max-[768px]:pt-20`}>
                     {/* Links principales */}
                     <div className="sidebar flex flex-col">
-                        <Link
-                            to="/home"
-                            className="link flex items-center p-2 my-2  hover:bg-gray-200 rounded-lg">
+                        <Link to="/home" className="link flex items-center p-2 my-2  hover:bg-gray-200 rounded-lg">
                             <LuLayoutDashboard className="text-2xl" />
                             {sidebarOpen && <span className="ml-4">Home</span>}
                         </Link>
@@ -67,11 +66,15 @@ function Sidebar({ onLogout }) {
                                 <span className="ml-auto">{isCollapsed}</span>
                             </button>
                             <div className={`${isCollapsed ? "hidden" : "block"} ml-3 div`}>
-                                <Link
-                                    to="/productos"
-                                    className="link flex gap-2 p-2 my-2 hover:bg-gray-200 rounded-lg">
+                                <Link to="/productos" className="link flex gap-2 p-2 my-2 hover:bg-gray-200 rounded-lg">
                                     <AiOutlineProduct className="text-2xl" />
                                     Productos
+                                </Link>
+                                <Link
+                                    to="/provedores"
+                                    className="link flex gap-2 p-2 my-2  hover:bg-gray-200 rounded-lg">
+                                    <FiUsers className="text-2xl" />
+                                    Provedores
                                 </Link>
                                 <Link
                                     to="/movimientos"

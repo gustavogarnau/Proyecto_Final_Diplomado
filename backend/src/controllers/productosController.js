@@ -48,28 +48,32 @@ const postCrearProducto = async (producto = {}) => {
   }
 };
 
-// Actualizar un producto existente
 const putActualizarProducto = async (id = "", producto = {}) => {
-  const { nombre, descripcion, precio_por_gramo, cantidad_actual, proveedor_id, categoria_id } = producto;
-  const query =
-    "UPDATE productos SET nombre = $1, descripcion = $2, precio_por_gramo = $3, cantidad_actual = $4, proveedor_id = $5, categoria_id = $6 WHERE producto_id = $7 RETURNING *";
-  const parametros = [
-    nombre,
-    descripcion,
-    precio_por_gramo,
-    cantidad_actual,
-    proveedor_id,
-    categoria_id,
-    id,
-  ];
-  try {
-    const productoActualizado = await Pool.query(query, parametros);
-    return productoActualizado.rows[0];
-  } catch (error) {
-    console.error(`Error al actualizar el producto con ID ${id}:`, error);
-    throw error;
-  }
+    const { nombre, descripcion, precio_por_gramo, cantidad_actual, proveedor_id, categoria_id } = producto;
+
+    // Verifica si el ID es válido
+    if (!id) {
+        throw new Error("ID de producto no proporcionado");
+    }
+
+    // Verifica si los campos requeridos tienen valores válidos
+    if (isNaN(cantidad_actual) || isNaN(precio_por_gramo)) {
+        throw new Error("Cantidad actual o precio por gramo no válidos");
+    }
+
+    const query =
+        "UPDATE productos SET nombre = $1, descripcion = $2, precio_por_gramo = $3, cantidad_actual = $4, proveedor_id = $5, categoria_id = $6 WHERE producto_id = $7 RETURNING *";
+    const parametros = [nombre, descripcion, precio_por_gramo, cantidad_actual, proveedor_id, categoria_id, id];
+    try {
+        const productoActualizado = await Pool.query(query, parametros);
+        return productoActualizado.rows[0];
+    } catch (error) {
+        console.error(`Error al actualizar el producto con ID ${id}:`, error);
+        throw error;
+    }
 };
+
+
 
 // Eliminar un producto por su ID
 const deleteEliminarProducto = async (id = "") => {

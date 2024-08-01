@@ -1,19 +1,19 @@
 import { useState, useEffect, useCallback } from "react";
 
-const useFetchProductos = () => {
-    const [productos, setProductos] = useState([]);
+const useFetchProvedores = () => {
+    const [proveedores, setproveedores] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const fetchProductos = useCallback(async () => {
+    const fetchProveedores = useCallback(async () => {
         setLoading(true);
         try {
-            const response = await fetch(`${import.meta.env.VITE_USER_API}/api/productos`);
+            const response = await fetch(`${import.meta.env.VITE_USER_API}/api/proveedores`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            setProductos(data);
+            setproveedores(data);
         } catch (error) {
             setError(error.message);
         } finally {
@@ -22,23 +22,23 @@ const useFetchProductos = () => {
     }, []);
 
     useEffect(() => {
-        fetchProductos();
-    }, [fetchProductos]);
+        fetchProveedores();
+    }, [fetchProveedores]);
 
-    const addProducto = async (producto) => {
+    const addProveedores = async (proveedores) => {
         setLoading(true);
         try {
-            const response = await fetch(`${import.meta.env.VITE_USER_API}/api/productos`, {
+            const response = await fetch(`${import.meta.env.VITE_USER_API}/api/proveedores`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(producto),
+                body: JSON.stringify(proveedores),
             });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            await fetchProductos();
+            await fetchProveedores();
         } catch (error) {
             setError(error.message);
         } finally {
@@ -46,20 +46,20 @@ const useFetchProductos = () => {
         }
     };
 
-    const editProducto = async (id, updatedProducto) => {
+    const editProveedores = async (id, updatedProveedores) => {
         setLoading(true);
         try {
-            const response = await fetch(`${import.meta.env.VITE_USER_API}/api/productos/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_USER_API}/api/proveedores/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(updatedProducto),
+                body: JSON.stringify(updatedProveedores),
             });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            await fetchProductos();
+            await fetchProveedores();
         } catch (error) {
             setError(error.message);
         } finally {
@@ -67,16 +67,16 @@ const useFetchProductos = () => {
         }
     };
 
-    const deleteProducto = async (id) => {
+    const deleteProveedores = async (id) => {
         setLoading(true);
         try {
-            const response = await fetch(`${import.meta.env.VITE_USER_API}/api/productos/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_USER_API}/api/proveedores/${id}`, {
                 method: "DELETE",
             });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            await fetchProductos();
+            await fetchProveedores();
         } catch (error) {
             setError(error.message);
         } finally {
@@ -84,7 +84,7 @@ const useFetchProductos = () => {
         }
     };
 
-    return { productos, error, loading, addProducto, editProducto, deleteProducto, fetchProductos };
+    return { proveedores, error, loading, addProveedores, editProveedores, deleteProveedores, fetchProveedores };
 };
 
-export default useFetchProductos;
+export default useFetchProvedores;
