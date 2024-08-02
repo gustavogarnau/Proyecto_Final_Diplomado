@@ -91,9 +91,9 @@ const Login = ({ onLogin }) => {
                         </form>
                     </div>
                 )}
-            </div>
-            <div className="fixed top-2 right-2">
-                <DarkMode />
+                <div className="fixed top-2 right-2">
+                    <DarkMode />
+                </div>
             </div>
         </>
     );

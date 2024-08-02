@@ -32,15 +32,15 @@ const ModalProduct = ({ addProducto, fetchProductos }) => {
             </button>
 
             {modalIsOpen && (
-                <div className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-gray-800 bg-opacity-50">
-                    <div className="relative p-4 w-full max-w-md max-h-full">
+                <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-50">
+                    <div className="relative w-full max-w-md max-h-full p-4">
                         <div className="relative bg-white rounded-lg shadow">
-                            <div className="modal flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                                <h3 className="btn-modal text-lg font-semibold text-gray-900">Agregar Producto</h3>
+                            <div className="flex items-center justify-between p-4 border-b rounded-t modal md:p-5">
+                                <h3 className="text-lg font-semibold text-gray-900 btn-modal">Agregar Producto</h3>
                                 <button
                                     type="button"
                                     onClick={cerrarModal}
-                                    className="btn-modal text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
+                                    className="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg btn-modal ms-auto">
                                     <svg
                                         className="w-3 h-3"
                                         aria-hidden="true"
@@ -53,7 +53,7 @@ const ModalProduct = ({ addProducto, fetchProductos }) => {
                                 </button>
                             </div>
                             <form className="p-4 md:p-5" onSubmit={handleSubmit(onSubmit)}>
-                                <div className="grid gap-4 mb-4 grid-cols-2">
+                                <div className="grid grid-cols-2 gap-4 mb-4">
                                     <div className="col-span-2">
                                         <label
                                             htmlFor="nombre"
@@ -150,7 +150,7 @@ const ModalProduct = ({ addProducto, fetchProductos }) => {
                                     type="submit"
                                     className="button text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                     <svg
-                                        className="me-1 -ms-1 w-5 h-5"
+                                        className="w-5 h-5 me-1 -ms-1"
                                         fill="currentColor"
                                         viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -158,7 +158,7 @@ const ModalProduct = ({ addProducto, fetchProductos }) => {
                                     </svg>
                                     Agregar
                                 </button>
-                                {error && <p className="text-red-500 mt-4">{error}</p>}
+                                {error && <p className="mt-4 text-red-500">{error}</p>}
                             </form>
                         </div>
                     </div>

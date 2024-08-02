@@ -130,5 +130,3 @@ const EditarProduct = ({ editProducto, productoEditado, setProductoEditado }) =>
 };
 
 export default EditarProduct;
-
-

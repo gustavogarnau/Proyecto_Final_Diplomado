@@ -8,6 +8,8 @@ import Home from "./pages/Home/Home";
 import Productos from "./pages/Productos/Productos";
 import Movimientos from "./pages/Movimientos/Movimientos";
 import Provedor from "./pages/Provedores/Provedor";
+import Categorias from "./pages/Categorias/Categorias";
+import Roles from "./pages/Roles/Roles";
 
 export function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("isAuthenticated") === "true");
@@ -52,6 +54,13 @@ export function App() {
             <Route
                 path="/provedores"
                 element={isAuthenticated ? <Provedor onLogout={logout} /> : <Navigate to="/" />}
+            />
+            <Route
+                path="/categorias"
+                element={isAuthenticated ? <Categorias onLogout={logout} /> : <Navigate to="/" />}
+            />
+            <Route path="/roles" 
+            element={isAuthenticated ? <Roles onLogout={logout} /> : <Navigate to="/" />} 
             />
         </Routes>
     );

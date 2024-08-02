@@ -117,7 +117,7 @@ function Sidebar({ onLogout }) {
                                     Roles
                                 </Link>
                                 <Link
-                                    to="/categoria"
+                                    to="/categorias"
                                     className="link flex gap-2 p-2 my-2  hover:bg-gray-200 rounded-lg">
                                     <BiCategory className="text-2xl" />
                                     Categoria

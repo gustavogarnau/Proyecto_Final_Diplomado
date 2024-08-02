@@ -97,15 +97,15 @@ const Productos = ({ onLogout }) => {
                                                 <td className="px-6 py-4">{producto.cantidad_actual}</td>
                                                 <td className="px-6 py-4">{producto.precio_por_gramo}</td>
                                                 <td className="px-6 py-4">{producto.fecha_registro}</td>
-                                                <td className="px-6 py-4 flex gap-1 justify-center">
+                                                <td className="flex justify-center gap-1 px-6 py-4">
                                                     <button
-                                                        className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center"
+                                                        className="block p-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
                                                         type="button"
                                                         onClick={() => handleEdit(producto)}>
                                                         <BsPencilSquare className="text-base" />
                                                     </button>
                                                     <button
-                                                        className="block text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center"
+                                                        className="block p-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
                                                         type="button"
                                                         onClick={() => handleDelete(producto.producto_id)}>
                                                         <MdDelete className="text-base" />
@@ -127,7 +127,7 @@ const Productos = ({ onLogout }) => {
                                 page={page}
                                 onChange={handleChangePage}
                                 color="primary"
-                                className="my-4 flex justify-center"
+                                className="flex justify-center my-4"
                             />
                         </>
                     )}

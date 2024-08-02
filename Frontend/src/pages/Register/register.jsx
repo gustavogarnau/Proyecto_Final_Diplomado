@@ -175,10 +175,10 @@ export const LoginRegister = () => {
                         </form>
                     </div>
                 )}
-            </div>
-            {/* Componente DarkMode */}
-            <div className="fixed top-2 right-2">
-                <DarkMode />
+                {/* Componente DarkMode */}
+                <div className="fixed top-2 right-2">
+                    <DarkMode />
+                </div>
             </div>
         </>
     );

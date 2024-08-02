@@ -162,6 +162,7 @@
 
 .dark-mode div {
     background-color: var(--primary-dark);
+    transition: all;
 }
 
 .dark-mode h2,

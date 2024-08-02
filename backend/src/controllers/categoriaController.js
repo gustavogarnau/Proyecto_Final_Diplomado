@@ -23,7 +23,7 @@ const posCrearCategoira = async ( categoria = {}) => {
 
 const putActualizarCategoria = async ( id = "", categoria = {}) => {
     const { nombre } = categoria;
-    const query = "UPDATE categorias SET nombre = $1 WHERE categoria_id = $3";
+    const query = "UPDATE categorias SET nombre = $1 WHERE categoria_id = $2";
     const parametros = [nombre, id];
     const categorias = await Pool.query(query, parametros);
     return categorias;
