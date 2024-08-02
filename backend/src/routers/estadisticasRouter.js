@@ -5,10 +5,12 @@ const { jsonResponse } = require("../../lib/jsonResponse");
 
 const {
   getCantidadProductosPorCategoria,
+  // getCantidadTotalCategorias,
   getValorTotalInventarioPorProveedor,
   getProductosMayorMovimiento,
   getEntradasSalidasPorMes,
   getProveedoresMayorCantidadProductos,
+  getTotalProductos,
   getUsuariosActivosPorCiudad,
   getPromedioPrecioPorCategoria,
   getMovimientoReciente,
@@ -39,6 +41,30 @@ router.get("/cantidad-productos-categoria", (req, res) => {
       );
     });
 });
+
+// Ruta para obtener cantidad total de categorias
+// router.get("/total-categorias", (req, res) => {
+//   getCantidadTotalCategorias()
+//   .then((result) => {
+//     res.json(
+//       jsonResponse(200, {
+//         message: "Cantidad total de categorías:",
+//         data: result,
+//       })
+//     );
+//   })
+//   .catch((error) => {
+//       console.error(
+//         "Error al obtener la cantidad de productos por categoría:",
+//         error
+//       );
+//       res.json(
+//         jsonResponse(500, {
+//           error: "Error al obtener la cantidad de productos por categoría",
+//         })
+//       );
+//     });
+// });
 
 // Ruta para obtener el valor total del inventario por proveedor
 router.get("/valor-inventario-proveedor", (req, res) => {
@@ -83,6 +109,27 @@ router.get("/productos-mayor-movimiento", (req, res) => {
       res.json(
         jsonResponse(500, {
           error: "Error al obtener los productos con mayor movimiento",
+        })
+      );
+    });
+});
+
+// Ruta para obtener el total de productos
+router.get("/total-productos", (req, res) => {
+  getTotalProductos()
+    .then((result) => {
+      res.json(
+        jsonResponse(200, {
+          message: "Total de productos:",
+          data: result,
+        })
+      );
+    })
+    .catch((error) => {
+      console.error("Error al obtener el total de productos:", error);
+      res.json(
+        jsonResponse(500, {
+          error: "Error al obtener el total de productos",
         })
       );
     });

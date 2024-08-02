@@ -12,6 +12,16 @@ const getCantidadProductosPorCategoria = async () => {
   return resultado.rows;
 };
 
+//  cantidad total de categorias
+// const getCantidadTotalCategorias = async() => {
+//   const query = 
+//         `SELECT COUNT(p.producto_id) AS total
+//         FROM categorias c
+//         JOIN productos p ON c.categoria_id = p.categoria_id`;
+//   const resultado = await Pool.query(query);
+//   return resultado.rows;
+// }
+
 // 2. Valor Total del Inventario por Proveedor
 const getValorTotalInventarioPorProveedor = async () => {
   const query = `
@@ -66,6 +76,17 @@ const getProveedoresMayorCantidadProductos = async () => {
     `;
   const resultado = await Pool.query(query);
   return resultado.rows;
+};
+
+// 5.1 TOTAL PRODUCTOS
+const getTotalProductos = async () => {
+    const query = `
+        SELECT  COUNT(p.producto_id) AS total_productos
+        FROM proveedores pr
+        JOIN productos p ON pr.proveedor_id = p.proveedor_id;
+    `;
+    const resultado = await Pool.query(query);
+    return resultado.rows;
 };
 
 // 6. Usuarios Activos por Ciudad
@@ -133,6 +154,8 @@ const getHistorialMovimientosProducto = async (id) => {
 
 module.exports = {
   getCantidadProductosPorCategoria,
+  // getCantidadTotalCategorias,
+  getTotalProductos,
   getValorTotalInventarioPorProveedor,
   getProductosMayorMovimiento,
   getEntradasSalidasPorMes,

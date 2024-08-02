@@ -3,6 +3,7 @@ import Chart from "../../components/Charts/Chart";
 import { Pagination } from "@mui/material";
 import { useState } from "react";
 import useFetchProductos from "../Productos/hook/useFetchProductos";
+import CardsContainer from "./components/card/CardsContainer";
 
 const Home = ({ onLogout }) => {
     const { productos, error, loading } =
@@ -22,22 +23,9 @@ const Home = ({ onLogout }) => {
 
             <div className="flex flex-col max-[768px]:container p-2">
                 {/* Main Content */}
-                <div className=" max-[768px]:p-0 ">
-                    <div className="flex gap-2 max-[768px]:gap-0">
-                        <div className="bg-white max-[768px]:w-40  w-52 shadow-md rounded-lg p-6 m-4 flex items-center">
-                            <div className="mr-4 text-3xl text-blue-500">2</div>
-                            <div>
-                                <h2 className="text-xl max-[768px]:text-lg font-bold">Productos</h2>
-                                <p className="text-2xl max-[768px]:text-lg font-semibold">en stock</p>
-                            </div>
-                        </div>
-                        <div className="bg-white max-[768px]:w-40 w-52 shadow-md rounded-lg p-6 m-4 flex items-center">
-                            <div className="mr-4 text-3xl text-blue-500">2</div>
-                            <div>
-                                <h2 className="text-xl max-[768px]:text-lg font-bold">Provedores</h2>
-                                <p className="text-2xl max-[768px]:text-lg font-semibold">dfgssg</p>
-                            </div>
-                        </div>
+                <div className="pt-12 max-[768px]:p-0 ">
+                    <div className="flex w-full max-[768px]:gap-0 max-[768px]:pt-12 max-[768px]:justify-center justify-evenly">
+                        <CardsContainer />
                     </div>
                     <div className="flex justify-center w-full p-4 ">
                         <Chart />
@@ -81,7 +69,6 @@ const Home = ({ onLogout }) => {
                                                     <td className="px-6 py-4">{producto.cantidad_actual}</td>
                                                     <td className="px-6 py-4">{producto.precio_por_gramo}</td>
                                                     <td className="px-6 py-4">{producto.fecha_registro}</td>
-                                                    
                                                 </tr>
                                             ))
                                         ) : (
