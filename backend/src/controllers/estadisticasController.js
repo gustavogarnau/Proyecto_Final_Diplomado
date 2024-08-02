@@ -41,7 +41,7 @@ const getProductosMayorMovimiento = async () => {
 // 4. Entradas y Salidas de Productos por Mes
 const getEntradasSalidasPorMes = async () => {
   const query = `
-        SELECT TO_CHAR(mi.fecha_de_movimiento, 'YYYY-MM') AS mes,
+        SELECT TO_CHAR(mi.fecha_movimiento, 'YYYY-MM') AS mes,
                p.nombre AS producto,
                SUM(CASE WHEN mi.tipo_movimiento = 'entrada' THEN mi.cantidad ELSE 0 END) AS total_entradas,
                SUM(CASE WHEN mi.tipo_movimiento = 'salida' THEN mi.cantidad ELSE 0 END) AS total_salidas
@@ -95,11 +95,11 @@ const getPromedioPrecioPorCategoria = async () => {
 // 8. Movimiento de Inventario Reciente (Últimos 30 Días)
 const getMovimientoReciente = async () => {
   const query = `
-        SELECT mi.fecha_de_movimiento, p.nombre AS producto, mi.tipo_movimiento, mi.cantidad, mi.observaciones
+        SELECT mi.fecha_movimiento, p.nombre AS producto, mi.tipo_movimiento, mi.cantidad, mi.observaciones
         FROM movimientosinventario mi
         JOIN productos p ON mi.producto_id = p.producto_id
-        WHERE mi.fecha_de_movimiento >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
-        ORDER BY mi.fecha_de_movimiento DESC;
+        WHERE mi.fecha_movimiento >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+        ORDER BY mi.fecha_movimiento DESC;
     `;
   const resultado = await Pool.query(query);
   return resultado.rows;
@@ -120,11 +120,11 @@ const getProductosBajaCantidad = async () => {
 // 10. Historial de Movimientos por Producto
 const getHistorialMovimientosProducto = async (id) => {
   const query = `
-        SELECT p.nombre AS producto, mi.fecha_de_movimiento, mi.tipo_movimiento, mi.cantidad, mi.observaciones
+        SELECT p.nombre AS producto, mi.fecha_movimiento, mi.tipo_movimiento, mi.cantidad, mi.observaciones
         FROM movimientosinventario mi
         JOIN productos p ON mi.producto_id = p.producto_id
         WHERE p.producto_id = $1
-        ORDER BY mi.fecha_de_movimiento DESC;
+        ORDER BY mi.fecha_movimiento DESC;
     `;
   const parametros = [id];
   const resultado = await Pool.query(query, parametros);
