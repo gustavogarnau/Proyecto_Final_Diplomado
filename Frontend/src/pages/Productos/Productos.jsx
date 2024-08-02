@@ -89,30 +89,43 @@ const Productos = ({ onLogout }) => {
                                 </thead>
                                 <tbody>
                                     {paginatedProductos?.length > 0 ? (
-                                        paginatedProductos.map((producto) => (
-                                            <tr key={producto.id} className="bg-white border-b">
-                                                <td className="px-6 py-4">{producto.producto_id}</td>
-                                                <td className="px-6 py-4">{producto.nombre}</td>
-                                                <td className="px-6 py-4">{producto.descripcion}</td>
-                                                <td className="px-6 py-4">{producto.cantidad_actual}</td>
-                                                <td className="px-6 py-4">{producto.precio_por_gramo}</td>
-                                                <td className="px-6 py-4">{producto.fecha_registro}</td>
-                                                <td className="flex justify-center gap-1 px-6 py-4">
-                                                    <button
-                                                        className="block p-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
-                                                        type="button"
-                                                        onClick={() => handleEdit(producto)}>
-                                                        <BsPencilSquare className="text-base" />
-                                                    </button>
-                                                    <button
-                                                        className="block p-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
-                                                        type="button"
-                                                        onClick={() => handleDelete(producto.producto_id)}>
-                                                        <MdDelete className="text-base" />
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))
+                                        paginatedProductos.map((producto) => {
+                                            // Formatea la fecha a un formato más sencillo
+                                            const fecha = new Date(producto.fecha_registro);
+                                            const fechaFormateada = fecha.toLocaleDateString(); // Puedes usar otras opciones para formatear la fecha
+
+                                             const valorFormateado = Number(producto.precio_por_gramo).toLocaleString(
+                                                 "es-ES",
+                                                 {
+                                                     minimumFractionDigits: 2,
+                                                     maximumFractionDigits: 2,
+                                                 }
+                                             );
+                                            return (
+                                                <tr key={producto.id} className="bg-white border-b">
+                                                    <td className="px-6 py-4">{producto.producto_id}</td>
+                                                    <td className="px-6 py-4">{producto.nombre}</td>
+                                                    <td className="px-6 py-4">{producto.descripcion}</td>
+                                                    <td className="px-6 py-4">{producto.cantidad_actual}</td>
+                                                    <td className="px-6 py-4">{valorFormateado}</td>
+                                                    <td className="px-6 py-4">{fechaFormateada}</td>
+                                                    <td className="flex justify-center gap-1 px-6 py-4">
+                                                        <button
+                                                            className="block p-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                                                            type="button"
+                                                            onClick={() => handleEdit(producto)}>
+                                                            <BsPencilSquare className="text-base" />
+                                                        </button>
+                                                        <button
+                                                            className="block p-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                                                            type="button"
+                                                            onClick={() => handleDelete(producto.producto_id)}>
+                                                            <MdDelete className="text-base" />
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })
                                     ) : (
                                         <tr>
                                             <td colSpan="7" className="px-6 py-4 text-center">

@@ -27,7 +27,7 @@ const Home = ({ onLogout }) => {
                     <div className="flex w-full max-[768px]:gap-0 max-[768px]:pt-12 max-[768px]:justify-center justify-evenly">
                         <CardsContainer />
                     </div>
-                    <div className="flex justify-center w-full p-4 ">
+                    <div className="flex justify-center w-full p-4 pt-12 max-[768px]:pt-0">
                         <Chart />
                     </div>
 
@@ -61,16 +61,29 @@ const Home = ({ onLogout }) => {
                                     </thead>
                                     <tbody>
                                         {paginatedProductos?.length > 0 ? (
-                                            paginatedProductos.map((producto) => (
-                                                <tr key={producto.id} className="bg-white border-b">
-                                                    <td className="px-6 py-4">{producto.producto_id}</td>
-                                                    <td className="px-6 py-4">{producto.nombre}</td>
-                                                    <td className="px-6 py-4">{producto.descripcion}</td>
-                                                    <td className="px-6 py-4">{producto.cantidad_actual}</td>
-                                                    <td className="px-6 py-4">{producto.precio_por_gramo}</td>
-                                                    <td className="px-6 py-4">{producto.fecha_registro}</td>
-                                                </tr>
-                                            ))
+                                            paginatedProductos.map((producto) => {
+                                                // Formatea la fecha a un formato más sencillo
+                                                const fecha = new Date(producto.fecha_registro);
+                                                const fechaFormateada = fecha.toLocaleDateString(); // Puedes usar otras opciones para formatear la fecha
+
+                                                const valorFormateado = Number(
+                                                    producto.precio_por_gramo
+                                                ).toLocaleString("es-ES", {
+                                                    minimumFractionDigits: 2,
+                                                    maximumFractionDigits: 2,
+                                                });
+
+                                                return (
+                                                    <tr key={producto.id} className="bg-white border-b">
+                                                        <td className="px-6 py-4">{producto.producto_id}</td>
+                                                        <td className="px-6 py-4">{producto.nombre}</td>
+                                                        <td className="px-6 py-4">{producto.descripcion}</td>
+                                                        <td className="px-6 py-4">{producto.cantidad_actual}</td>
+                                                        <td className="px-6 py-4">{valorFormateado}</td>
+                                                        <td className="px-6 py-4">{fechaFormateada}</td>
+                                                    </tr>
+                                                );
+                                            })
                                         ) : (
                                             <tr>
                                                 <td colSpan="7" className="px-6 py-4 text-center">
@@ -85,7 +98,7 @@ const Home = ({ onLogout }) => {
                                     page={page}
                                     onChange={handleChangePage}
                                     color="primary"
-                                    className="flex justify-center my-4"
+                                    className="flex justify-center pt-20 my-4"
                                 />
                             </>
                         )}

@@ -34,6 +34,17 @@ const getValorTotalInventarioPorProveedor = async () => {
   return resultado.rows;
 };
 
+// 2.1 Valor Total del Productos
+const getValorTotalProductos = async () => {
+    const query = `
+        SELECT SUM(p.cantidad_actual * p.precio_por_gramo) AS valor_total_productos
+        FROM productos p;
+    `;
+    const resultado = await Pool.query(query);
+    return resultado.rows;
+};
+
+
 // 3. Productos con Mayor Movimiento
 const getProductosMayorMovimiento = async () => {
   const query = `
@@ -153,16 +164,17 @@ const getHistorialMovimientosProducto = async (id) => {
 };
 
 module.exports = {
-  getCantidadProductosPorCategoria,
-  // getCantidadTotalCategorias,
-  getTotalProductos,
-  getValorTotalInventarioPorProveedor,
-  getProductosMayorMovimiento,
-  getEntradasSalidasPorMes,
-  getProveedoresMayorCantidadProductos,
-  getUsuariosActivosPorCiudad,
-  getPromedioPrecioPorCategoria,
-  getMovimientoReciente,
-  getProductosBajaCantidad,
-  getHistorialMovimientosProducto,
+    getCantidadProductosPorCategoria,
+    // getCantidadTotalCategorias,
+    getTotalProductos,
+    getValorTotalInventarioPorProveedor,
+    getValorTotalProductos,
+    getProductosMayorMovimiento,
+    getEntradasSalidasPorMes,
+    getProveedoresMayorCantidadProductos,
+    getUsuariosActivosPorCiudad,
+    getPromedioPrecioPorCategoria,
+    getMovimientoReciente,
+    getProductosBajaCantidad,
+    getHistorialMovimientosProducto,
 };
