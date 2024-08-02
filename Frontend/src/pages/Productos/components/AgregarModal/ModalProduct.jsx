@@ -1,17 +1,25 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-// import useFetchProductos from "../../hook/useFetchProductos";
+import useFetchCategorias from "../../../Categorias/hook/useFetchCategorias";
+import useFetchProvedores from "../../../Provedores/hook/useFetchProvedores";
 
 const ModalProduct = ({ addProducto, fetchProductos }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [error, setError] = useState(null);
     const { register, handleSubmit, reset } = useForm();
+    const { categorias, loading: loadingCategorias, error: fetchErrorCategorias } = useFetchCategorias();
+    const { proveedores, loading: loadingProveedores, error: fetchErrorProveedores } = useFetchProvedores();
 
     const abrirModal = () => setModalIsOpen(true);
     const cerrarModal = () => setModalIsOpen(false);
 
     const onSubmit = async (data) => {
         try {
+            data.precio_por_gramo = parseFloat(data.precio_por_gramo);
+            data.cantidad_actual = parseInt(data.cantidad_actual);
+            data.categoria_id = parseInt(data.categoria_id);
+            data.proveedor_id = parseInt(data.proveedor_id);
+
             await addProducto(data);
             await fetchProductos(); // Actualiza los productos después de agregar uno nuevo
             reset();
@@ -106,11 +114,20 @@ const ModalProduct = ({ addProducto, fetchProductos }) => {
                                             id="categoria_id"
                                             {...register("categoria_id", { required: true })}
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                                            <option selected disabled>
-                                                Seleccione la categoria
+                                            <option value="" disabled selected>
+                                                Seleccione la categoría
                                             </option>
-                                            <option value="1">Esencia</option>
-                                            <option value="2">PC</option>
+                                            {loadingCategorias ? (
+                                                <option>Cargando...</option>
+                                            ) : fetchErrorCategorias ? (
+                                                <option>Error al cargar categorías</option>
+                                            ) : (
+                                                categorias.body?.data?.map((categoria) => (
+                                                    <option key={categoria.categoria_id} value={categoria.categoria_id}>
+                                                        {categoria.nombre}
+                                                    </option>
+                                                ))
+                                            )}
                                         </select>
                                     </div>
 
@@ -124,11 +141,20 @@ const ModalProduct = ({ addProducto, fetchProductos }) => {
                                             id="proveedor_id"
                                             {...register("proveedor_id", { required: true })}
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                                            <option selected disabled>
-                                                Seleccione la proveedor
+                                            <option value="" disabled selected>
+                                                Seleccione el proveedor
                                             </option>
-                                            <option value="1">David</option>
-                                            <option value="2">Juan</option>
+                                            {loadingProveedores ? (
+                                                <option>Cargando...</option>
+                                            ) : fetchErrorProveedores ? (
+                                                <option>Error al cargar proveedores</option>
+                                            ) : (
+                                                proveedores.body?.data?.map((proveedor) => (
+                                                    <option key={proveedor.proveedor_id} value={proveedor.proveedor_id}>
+                                                        {proveedor.nombre}
+                                                    </option>
+                                                ))
+                                            )}
                                         </select>
                                     </div>
 

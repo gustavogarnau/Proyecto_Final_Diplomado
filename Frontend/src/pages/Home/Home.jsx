@@ -43,7 +43,7 @@ const Home = ({ onLogout }) => {
                         <Chart />
                     </div>
 
-                    <div className="relative overflow-x-auto shadow-md rounded-lg w-5/6 max-[768px]:w-full max-[768px]:p-2">
+                    <div className="relative overflow-x-auto shadow-md rounded-lg w-full max-[768px]:w-full max-[768px]:p-2">
                         {loading && <p className="text-gray-500">Cargando productos...</p>}
                         {error && <p className="text-red-500">Error: {error}</p>}
                         {!loading && !error && (

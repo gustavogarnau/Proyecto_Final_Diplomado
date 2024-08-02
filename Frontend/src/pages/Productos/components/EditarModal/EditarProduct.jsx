@@ -12,10 +12,15 @@ import {
     InputLabel,
     FormControl,
 } from "@mui/material";
+import useFetchCategorias from "../../../Categorias/hook/useFetchCategorias";
+import useFetchProvedores from "../../../Provedores/hook/useFetchProvedores";
 
 const EditarProduct = ({ editProducto, productoEditado, setProductoEditado }) => {
     const { register, handleSubmit, setValue, reset } = useForm();
     const [open, setOpen] = useState(true);
+
+    const { categorias, loading: loadingCategorias, error: fetchErrorCategorias } = useFetchCategorias();
+    const { proveedores, loading: loadingProveedores, error: fetchErrorProveedores } = useFetchProvedores();
 
     useEffect(() => {
         if (productoEditado) {
@@ -86,8 +91,20 @@ const EditarProduct = ({ editProducto, productoEditado, setProductoEditado }) =>
                             labelId="categoria-label"
                             label="Categoría"
                             defaultValue={productoEditado ? productoEditado.categoria_id : ""}>
-                            <MenuItem value={1}>Esencia</MenuItem>
-                            <MenuItem value={2}>Otra categoría</MenuItem>
+                            <MenuItem value="" disabled>
+                                Seleccione la categoría
+                            </MenuItem>
+                            {loadingCategorias ? (
+                                <MenuItem value="">Cargando...</MenuItem>
+                            ) : fetchErrorCategorias ? (
+                                <MenuItem value="">Error al cargar categorías</MenuItem>
+                            ) : (
+                                categorias.body?.data?.map((categoria) => (
+                                    <MenuItem key={categoria.categoria_id} value={categoria.categoria_id}>
+                                        {categoria.nombre}
+                                    </MenuItem>
+                                ))
+                            )}
                         </Select>
                     </FormControl>
                     <FormControl fullWidth variant="outlined">
@@ -97,8 +114,20 @@ const EditarProduct = ({ editProducto, productoEditado, setProductoEditado }) =>
                             labelId="proveedor-label"
                             label="Proveedor"
                             defaultValue={productoEditado ? productoEditado.proveedor_id : ""}>
-                            <MenuItem value={1}>David</MenuItem>
-                            <MenuItem value={2}>Juan</MenuItem>
+                            <MenuItem value="" disabled>
+                                Seleccione el proveedor
+                            </MenuItem>
+                            {loadingProveedores ? (
+                                <MenuItem value="">Cargando...</MenuItem>
+                            ) : fetchErrorProveedores ? (
+                                <MenuItem value="">Error al cargar proveedores</MenuItem>
+                            ) : (
+                                proveedores.body?.data?.map((proveedor) => (
+                                    <MenuItem key={proveedor.proveedor_id} value={proveedor.proveedor_id}>
+                                        {proveedor.nombre}
+                                    </MenuItem>
+                                ))
+                            )}
                         </Select>
                     </FormControl>
                     <TextField
