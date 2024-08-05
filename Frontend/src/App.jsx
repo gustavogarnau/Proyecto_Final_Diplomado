@@ -6,7 +6,6 @@ import { Autenticacion } from "./layouts/Autenticacion"; // Asegúrate de import
 import { Activacion } from "./components/Activacion";
 import Home from "./pages/Home/Home";
 import Productos from "./pages/Productos/Productos";
-import Movimientos from "./pages/Movimientos/Movimientos";
 import Provedor from "./pages/Provedores/Provedor";
 import Categorias from "./pages/Categorias/Categorias";
 import Roles from "./pages/Roles/Roles";
@@ -46,10 +45,6 @@ export function App() {
             <Route
                 path="/productos"
                 element={isAuthenticated ? <Productos onLogout={logout} /> : <Navigate to="/" />}
-            />
-            <Route
-                path="/movimientos"
-                element={isAuthenticated ? <Movimientos onLogout={logout} /> : <Navigate to="/" />}
             />
             <Route
                 path="/provedores"
